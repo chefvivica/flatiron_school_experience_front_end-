@@ -1,0 +1,57 @@
+*{
+  margin: 0;
+  padding: 0;
+  background-origin: border-box;
+}
+
+body { 
+  background: url(./img/flatironSchoolLogIn.jpeg) no-repeat center center fixed; 
+  opacity: 70%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: rgb(183, 236, 240);
+}
+
+#sign_up{
+  background-color: rgb(245, 248, 66);
+  color: rgba(3, 3, 1, 0.726);
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 20%;
+  opacity: 0.9;
+  font-size: large;
+  font-weight: bold;
+}
+#log_in{
+  background-color: rgb(187, 154, 224);
+  color: rgba(3, 3, 1, 0.726);
+  padding: 14px 20px;
+  margin: 16px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+  font-size: large;
+  font-weight: bold;
+}
+
+button:hover {
+  opacity:1;
+}
+
+#user_name{
+  height: 30px;
+  width: 30%;
+  position: relative;
+  font-size: large;
+
+}
+
+.user{
+  font-size: xx-large;
+  font-weight: bolder;
+}
