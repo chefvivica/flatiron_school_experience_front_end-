@@ -4,7 +4,7 @@
   background-origin: border-box;
 }
 
-html { 
+body { 
   background: url(./img/flatironSchoolLogIn.jpeg) no-repeat center center fixed; 
   opacity: 70%;
   -webkit-background-size: cover;
