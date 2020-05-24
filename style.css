@@ -5,16 +5,15 @@
 }
 
 body { 
-  background: url(./img/flatironSchoolLogIn.jpeg) no-repeat center center fixed; 
+  background-image: no-repeat; 
   opacity: 70%;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   background-size: cover;
   background-color: rgb(183, 236, 240);
 }
 
-#sign_up{
+/* #sign_up{
   background-color: rgb(245, 248, 66);
   color: rgba(3, 3, 1, 0.726);
   padding: 14px 20px;
@@ -24,8 +23,9 @@ body {
   width: 20%;
   opacity: 0.9;
   font-size: large;
-  font-weight: bold;
-}
+  font-weight: bold; */
+/* } */
+
 #log_in{
   background-color: rgb(187, 154, 224);
   color: rgba(3, 3, 1, 0.726);
@@ -47,11 +47,28 @@ button:hover {
   height: 30px;
   width: 30%;
   position: relative;
-  font-size: large;
+  font-size: medium;
 
 }
 
 .user{
   font-size: xx-large;
   font-weight: bolder;
+}
+
+.pickAvatarBtn{
+  background: #3498db;
+  width: 380px;
+  padding: 4px 0;
+  font-size: xx-large;
+  
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: 3px;
+}
+
+.avatar_pic{
+  width: 300px;
 }
