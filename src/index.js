@@ -4,7 +4,7 @@ const ursersUrl = 'http://localhost:3000/users'
 const avatarsUrl = 'http://localhost:3000/avatars'
 const board = document.querySelector('#board')
 
-// clear leaderboard screen goes to sign in prompt?
+// clear leaderboard screen goes to sign in prompt
 function clearLeaderBoard(){
     const header = document.querySelector('h1').innerHTML = 'Welcome to flatiron-school-experience-game'
     board.innerHTML = '<h3> Please Create New Username or Sign In </h3>' 
