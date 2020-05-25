@@ -1,4 +1,34 @@
-//use this funcation to change background
+
+const ursersUrl = 'http://localhost:3000/users'
+const avatarsUrl = 'http://localhost:3000/avatars'
+const board = document.querySelector('#board')
+
+
+
+
+function leaderBoard(array){
+  // board.createElement('h1').innerHTML = 'Alumni Board'
+  array.forEach(person => {
+     const whoPlayed = person.username
+     person.avatars.forEach(avatar => {
+         line = document.createElement('h3')
+         line.setAttribute('dataset', `${avatar.skills}`)
+         line.setAttribute('class','robot')
+         line.innerText = `${whoPlayed} as ${avatar.name} scored ${avatar.points} points gained ${avatar.skills} skills in ${avatar.turns} turns`
+         board.appendChild(line)
+     })
+ })
+}
+
+fetch(ursersUrl).then(res => res.json()).then(users => leaderBoard(users))
+
+
+
+
+
+
+
+// use this funcation to change background
 const background = (imgUrl) =>{
   document.body.style.backgroundImage = `url(${imgUrl})`;
 }
@@ -7,6 +37,7 @@ document.body.style.backgroundImage =  "url('https://secure.meetupstatic.com/pho
 
 const logInForm = document.querySelector('#logInForm')
 document.addEventListener('click',e=>{
+  board.innerHTML = ' '
   e.preventDefault()
   switch(e.target.className){
     case("log_in"):

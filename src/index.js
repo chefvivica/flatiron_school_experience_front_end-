@@ -2,16 +2,17 @@ document.addEventListener('DOMContentLoaded', function(e){
 
 const ursersUrl = 'http://localhost:3000/users'
 const avatarsUrl = 'http://localhost:3000/avatars'
-const board = document.querySelector('#board')
+const board = document.querySelector('.board')
 
 // clear leaderboard screen goes to sign in prompt
 function clearLeaderBoard(){
-    const header = document.querySelector('h1').innerHTML = 'Welcome to flatiron-school-experience-game'
+    const header = document.createElement('h1').innerHTML = 'Welcome to flatiron-school-experience-game'
     board.innerHTML = '<h3> Please Create New Username or Sign In </h3>' 
     const signIn = document.createElement('input')
     signIn.setAttribute('placeholder', 'your name')
     const button = document.createElement('button', 'submit')
     button.innerHTML = 'Submit'
+    board.appendChild(header)
     board.appendChild(signIn)
     board.appendChild(button)
    //// fetch request for the avatars matching this persons id
@@ -20,7 +21,7 @@ function clearLeaderBoard(){
 
 /// our leader board can be up for like 5-7 seconds before user is prompted to sign in
 function leaderBoard(array){
-   document.querySelector('h1').innerHTML = 'Alumni Board'
+   board.createElement('h1').innerHTML = 'Alumni Board'
    array.forEach(person => {
       const whoPlayed = person.username
       person.avatars.forEach(avatar => {

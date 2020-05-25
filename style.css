@@ -72,3 +72,9 @@ button:hover {
 .avatar_pic{
   width: 300px;
 }
+
+.robot{
+  font-family: lazerz additktz;
+  color: rgb(191, 197, 199);
+  padding: 10px;
+}
