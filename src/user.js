@@ -1,9 +1,58 @@
+
 //use this funcation to change background
 const background = (imgUrl) =>{
   document.body.style.backgroundImage = `url(${imgUrl})`;
 }
 
-document.body.style.backgroundImage =  "url('https://secure.meetupstatic.com/photos/event/8/c/4/f/600_467315919.jpeg')";
+const ursersUrl = 'http://localhost:3000/users'
+const avatarsUrl = 'http://localhost:3000/avatars'
+const board = document.querySelector('#board')
+
+function leaderBoard(array){
+  // board.createElement('h1').innerHTML = 'Alumni Board'
+  array.forEach(person => {
+     const whoPlayed = person.username
+     person.avatars.forEach(avatar => {
+         line = document.createElement('h3')
+         line.setAttribute('dataset', `${avatar.skills}`)
+         line.setAttribute('class','robot')
+         line.innerText = `${whoPlayed} as ${avatar.name} scored ${avatar.points} points gained ${avatar.skills} skills in ${avatar.turns} turns`
+         board.appendChild(line)
+     })
+ })
+}
+
+fetch(ursersUrl).then(res => res.json()).then(users => leaderBoard(users))
+
+
+// use this funcation to change background
+
+const background = (imgUrl) =>{
+  document.body.style.backgroundImage = `url(${imgUrl})`;
+}
+
+
+  /// our leader board can be up for like 5-7 seconds before user is prompted to sign in
+fetch(ursersUrl).then(res => res.json()).then(users => leaderBoard(users))
+function leaderBoard(users){
+  users.forEach(person => {
+      const whoPlayed = person.username
+      person.avatars.forEach(avatar => {
+          line = document.createElement('h3')
+          line.setAttribute('dataset', `${avatar.skills}`)
+          line.innerText = `${whoPlayed} as ${avatar.name} scored ${avatar.points} points gained ${avatar.skills} skills in ${avatar.turns} turns`
+          board.append(line)
+      })
+  })
+}
+
+
+
+
+
+
+//starting here
+document.body.style.backgroundImage =  "url('https://cdn.dribbble.com/users/8894/screenshots/3370036/flatiron-school_gif.gif')";
 
 const logInForm = document.querySelector('#logInForm')
 document.addEventListener('click',e=>{
@@ -17,9 +66,11 @@ document.addEventListener('click',e=>{
     <input type="submit" name="commit" value="Go" class="log_in_btn" />
     `
     document.body.append(logInForm)
+   
     break;
 
     case("log_in_btn"):
+    board.style.display = 'none'
     background("https://media3.giphy.com/media/yoJC2xC7FRU3D7yguY/giphy.gif?cid=ecf05e47ffbf69ba614324c6a378bfc815e1f8715f18e5c1&rid=giphy.gif")
     const btn = document.querySelector('#log_in').style.display = "none"
     logInForm.style.display ="none"
