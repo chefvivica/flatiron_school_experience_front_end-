@@ -8,6 +8,7 @@ const board = document.querySelector('.board')
 function clearLeaderBoard(){
     const header = document.createElement('h1').innerHTML = 'Welcome to flatiron-school-experience-game'
     board.innerHTML = '<h3> Please Create New Username or Sign In </h3>' 
+    board.id = "leader-board"
     const signIn = document.createElement('input')
     signIn.setAttribute('placeholder', 'your name')
     const button = document.createElement('button', 'submit')
