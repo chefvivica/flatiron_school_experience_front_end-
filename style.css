@@ -55,6 +55,15 @@ button:hover {
   opacity:1;
 }
 
+/* #leader-board{
+  width: 100px;
+  height: 50px;
+  position: fixed;
+  font-size: medium;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #3498db;
+} */
+
 #user_name{
   height: 30px;
   width: 30%;

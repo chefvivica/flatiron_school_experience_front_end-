@@ -20,16 +20,16 @@ function clearLeaderBoard(){
 
 /// our leader board can be up for like 5-7 seconds before user is prompted to sign in
 function leaderBoard(array){
-   document.querySelector('h1').innerHTML = 'Alumni Board'
-   array.forEach(person => {
-      const whoPlayed = person.username
-      person.avatars.forEach(avatar => {
-          line = document.createElement('h3')
-          line.setAttribute('dataset', `${avatar.skills}`)
-          line.innerText = `${whoPlayed} as ${avatar.name} scored ${avatar.points} points gained ${avatar.skills} skills in ${avatar.turns} turns`
-          board.append(line)
-      })
-  })
+    document.querySelector('h1').innerHTML = 'Alumni Board'
+    array.forEach(person => {
+        const whoPlayed = person.username
+        person.avatars.forEach(avatar => {
+            line = document.createElement('h3')
+            line.setAttribute('dataset', `${avatar.skills}`)
+            line.innerText = `${whoPlayed} as ${avatar.name} scored ${avatar.points} points gained ${avatar.skills} skills in ${avatar.turns} turns`
+            board.append(line)
+        })
+    })
 }
 
 fetch(ursersUrl).then(res => res.json()).then(users => leaderBoard(users))
