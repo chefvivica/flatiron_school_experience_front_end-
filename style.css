@@ -34,9 +34,21 @@ body {
   border: none;
   cursor: pointer;
   width: 100%;
+  height: 90px;
   opacity: 0.9;
+  font-size: 40px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bold;
+
+}
+
+.log_in_btn{
+  width: 35px;
+  height: 35px;
   font-size: large;
   font-weight: bold;
+  color: #3498db;
+  
 }
 
 button:hover {
@@ -46,9 +58,8 @@ button:hover {
 #user_name{
   height: 30px;
   width: 30%;
-  position: relative;
   font-size: medium;
-
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .user{
@@ -69,6 +80,32 @@ button:hover {
   border-radius: 3px;
 }
 
-.avatar_pic{
+.pickedAvt{
+  width: 500px;
+  position: fixed;
+  left: 30%;
+  top: 30%;
+
+}
+
+.pickedAvtForm{
+  position: fixed;
+  left: 60%;
+  top: 30%;
   width: 300px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bolder;
+  font-size: xx-large;
+}
+
+input[type="text"]{
+  width: 300px;
+  height: 50px;
+  font-size: medium;
+}
+
+input[type="submit"]{
+  width: 60px;
+  height: 30px;
+  font-size: medium;
 }
