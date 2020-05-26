@@ -1,6 +1,7 @@
 const ursersUrl = 'http://localhost:3000/users'
 const avatarsUrl = 'http://localhost:3000/avatars'
 const board = document.querySelector('#board')
+const h1 = document.querySelector('#header')
 
 //use this funcation to change background
 const background = (imgUrl) =>{
@@ -15,8 +16,9 @@ function leaderBoard(users){
       const whoPlayed = person.username
       person.avatars.forEach(avatar => {
           line = document.createElement('h3')
+          line.className = "lines"
           line.setAttribute('dataset', `${avatar.skills}`)
-          line.innerText = `${whoPlayed} as ${avatar.name} scored ${avatar.points} points gained ${avatar.skills} skills in ${avatar.turns} turns`
+          line.innerText = `🔥${whoPlayed} as ${avatar.name} scored ${avatar.points} points gained ${avatar.skills} skills in ${avatar.turns} turns`
           board.append(line)
       })
   })
@@ -30,13 +32,14 @@ function leaderBoard(users){
 
 
 
-document.body.style.backgroundImage =  "url('https://cdn.dribbble.com/users/8894/screenshots/3370036/flatiron-school_gif.gif')";
+document.body.style.backgroundImage =  "url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQcyO7WgVaOZdHSuDkWuXeZGFtBYsY6pjzVLrv1Gk2kmONGljl9&usqp=CAU')";
 
 const logInForm = document.querySelector('#logInForm')
 document.addEventListener('click',e=>{
   e.preventDefault()
   switch(e.target.className){
     case("log_in"):
+    board.style.display = 'none'
     logInForm.innerHTML = `
     <label for="user_name">Name</label>
     <input type="text" name="user[name]" id="user_name" placeholder="please enter your user name here"/>
@@ -48,8 +51,8 @@ document.addEventListener('click',e=>{
     break;
 
     case("log_in_btn"):
-    board.style.display = 'none'
-    background("https://media3.giphy.com/media/yoJC2xC7FRU3D7yguY/giphy.gif?cid=ecf05e47ffbf69ba614324c6a378bfc815e1f8715f18e5c1&rid=giphy.gif")
+    h1.style.display ='none'
+    background("https://media1.giphy.com/media/3o7TKAW5scXkqmqTdK/200.webp?cid=ecf05e4704e31d4a3404cf2c2569491fdce225a4c6a9eb2d&rid=200.webp")
     const btn = document.querySelector('#log_in').style.display = "none"
     logInForm.style.display ="none"
     const pickAvatarBtn = document.createElement('button')
