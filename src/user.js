@@ -3,7 +3,8 @@ const avatarsUrl = 'http://localhost:3000/avatars'
 let board = document.querySelector('#grid')
 const h1 = document.querySelector('#header')
 const logIn = document.querySelector('form')
-// board.style.display = "none"
+const playButton = document.querySelector('.picked_avatar')
+board.style.display = "none"
 
 
 //use this funcation to change background
@@ -114,6 +115,15 @@ document.addEventListener('click',e=>{
       ////pulling out picture and user id from returning user just so we can have it to put in our board 
 
     break; 
+
+    case('picked_avatar'):
+    const pickedAv = document.querySelector('.pickedAvt')
+    const pickedAvForm = document.querySelector('.pickedAvtForm')
+    console.log(pickedAv)
+    pickedAv.style.display = 'none'
+    pickedAvForm.style.display = 'none'
+    board.style.display = 'inline-grid'
+    break;
   }
 
 
@@ -148,7 +158,7 @@ document.addEventListener('click',e=>{
       pickedAvtNameForm.innerHTML = `
       <label for="avater_name">I am your avatar, please give me a name.</label><br><br>
       <input type="text" name="avatar['name']" placeholder = "please give your avatar a name"/><br><br>
-      <input type="submit" value="submit" class="picked_avatar"/>
+      <input type="submit" value="Play" class="picked_avatar"/>
       `
       document.body.append(pickedAvt)
       document.body.append(pickedAvtNameForm)

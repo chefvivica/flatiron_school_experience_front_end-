@@ -28,13 +28,13 @@
 <script>
   function rollDice(){
     let die1 = document.getElementById('die1')
-    let die2 = document.getElementById('die2')
+    // let die2 = document.getElementById('die2')
     let status = document.getElementById('status')
     let d1 = Math.floor(Math.random() * 6) + 1
-    let d2 = Math.floor(Math.random() * 6) + 1
-    let diceTotal = d1 + d2
+    // let d2 = Math.floor(Math.random() * 6) + 1
+    let diceTotal = d1
     die1.innerHTML = d1
-    die2.innerHTML = d2
+    // die2.innerHTML = d2
     status.textContent = `You rolled ${diceTotal}!`
 }
   </script>
@@ -42,69 +42,69 @@
 
 <body>
   <div id="grid">
-    <div class="tile">
+    <div id="1" class="tile">
       Start
     </div>
-    <div class="tile">
+    <div id="2" class="tile">
       Tile 2
     </div>
-    <div class="tile">
+    <div id="3" class="tile">
       Tile 3
     </div>
-    <div class="tile">
+    <div id="4" class="tile">
       Tile 4
     </div>
-    <div class="tile">
+    <div id="5" class="tile">
       Mod 1 Code Challenge
     </div>
-    <div class="tile">
+    <div id="6" class="tile">
       Tile 6
     </div>
-    <div class="tile">
+    <div id="20" class="tile">
       Mod 5 Project!
     </div>
-    <div class="tile">
+    <div id="7" class="tile">
       Lecture
     </div>
-    <div class="tile">
+    <div id="19" class="tile">
       Tile 9
     </div>
-    <div class="tile">
+    <div id="8" class="tile">
       Tile 10
     </div>
-    <div class="tile">
+    <div id="18" class="tile">
       Tile 11
     </div>
-    <div class="tile">
+    <div id="9" class="tile">
       Mod 2 Code Challenge
     </div>
-    <div class="tile">
+    <div id="17" class="tile">
       Mod 4 Code Challenge
     </div>
-    <div class="tile">
+    <div id="10" class="tile">
       Tile 14
     </div>
-    <div class="tile">
+    <div id="16" class="tile">
       Tile 15
     </div>
-    <div class="tile">
+    <div id="15" class="tile">
       Tile 16
     </div>
-    <div class="tile">
+    <div id="14" class="tile">
       Tile 17
     </div>
-    <div class="tile">
+    <div id="13" class="tile">
       Mod 3 Code Challenge
     </div>
-    <div class="tile">
+    <div id="12" class="tile">
       Tile 19
     </div>
-    <div class="tile">
+    <div id="11" class="tile">
       Tile 20
     </div>
     <div class="center-tile">
       <div id="die1" class="dice">0</div>
-      <div id="die2" class="dice">0</div>
+      <!-- <div id="die2" class="dice">0</div> -->
       <button class="dieBtn" onclick="rollDice()"> Roll Dice</button>
       <h2 id="status" style="clear: left;"> </h2>
     </div>
