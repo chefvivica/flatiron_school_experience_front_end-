@@ -8,7 +8,6 @@ const background = (imgUrl) =>{
 }
 
 
-  /// our leader board can be up for like 5-7 seconds before user is prompted to sign in
 fetch(ursersUrl).then(res => res.json()).then(users => leaderBoard(users))
 function leaderBoard(users){
   users.forEach(person => {
@@ -48,6 +47,7 @@ document.addEventListener('click',e=>{
     break;
 
     case("log_in_btn"):
+    const username = document.querySelector('input').value
     board.style.display = 'none'
     background("https://media3.giphy.com/media/yoJC2xC7FRU3D7yguY/giphy.gif?cid=ecf05e47ffbf69ba614324c6a378bfc815e1f8715f18e5c1&rid=giphy.gif")
     const btn = document.querySelector('#log_in').style.display = "none"
@@ -56,6 +56,14 @@ document.addEventListener('click',e=>{
     pickAvatarBtn.className = 'pickAvatarBtn'
     pickAvatarBtn.textContent = 'Pick Your Avatar'
     document.body.append(pickAvatarBtn)
+    /// welcome back message for returning players
+    fetch(ursersUrl).then(res => res.json()).then(users => users.forEach(user =>{
+      if (user.username == username){ 
+        const heaer = document.querySelector('div')
+        heaer.innerHTML = `<h1 id=${user.id}> Welcom Back ${username}!</h1>`
+      }
+    }))
+
     break;
 
     case("pickAvatarBtn"):
@@ -64,6 +72,23 @@ document.addEventListener('click',e=>{
     const avatarBtn = document.querySelector(".pickAvatarBtn").style.display = "none"
     const avatarDiv = document.createElement('div')
     avatarDiv.className = 'avatarSelectDiv'
+  ////returning player has option of selecting from old avatars 
+    if (document.querySelector('h1')){
+        const returningPlayerId = document.querySelector('h1').id
+       fetch(`${ursersUrl}/${returningPlayerId}`).then(res => res.json()).then(player => {
+           player.avatars.forEach(avatar => {
+            const oldAvatarDiv = document.createElement('div')
+            oldAvatarDiv.className = 'avatarSelectDiv'
+            //// idk why the pictures are coming out weird maybe its my computer
+            oldAvatarDiv.innerHTML =`<span id="${returningPlayerId} class="avatars"><img src="${avatar.image_url}"><br><h3> ${avatar.name} | ${avatar.skills} Skills</h3><br><button class="${returningPlayerId}>Play As ${avatar.name}</button></span>`
+            console.log(oldAvatarDiv)
+            avatarDiv.append(oldAvatarDiv)
+           })
+           document.body.append(avatarDiv)
+       })
+     
+    } else {
+
     avatarDiv.innerHTML =`
     <span class="avatars"><img src = './img/avt1.png'/></span>
     <span class="avatars"><img src = './img/avt2.png'/></span>
@@ -73,9 +98,15 @@ document.addEventListener('click',e=>{
     <span class="avatars"><img src = './img/avt6.png'/></span>
     <span class="avatars"><img src = './img/avt7.png'/></span>
     `
-    document.body.append(avatarDiv)
+    document.body.append(avatarDiv) }
     break;
   }
+
+
+
+
+
+
 
   const avatarChars = document.querySelectorAll('.avatars')
   let avatarCharArray = Array.from(avatarChars)
