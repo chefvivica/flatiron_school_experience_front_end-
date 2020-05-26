@@ -1,7 +1,10 @@
 const ursersUrl = 'http://localhost:3000/users'
 const avatarsUrl = 'http://localhost:3000/avatars'
-const board = document.querySelector('#board')
+let board = document.querySelector('#grid')
 const h1 = document.querySelector('#header')
+
+board.style.display = "none"
+
 
 //use this funcation to change background
 const background = (imgUrl) =>{
