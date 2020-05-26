@@ -3,7 +3,7 @@ const avatarsUrl = 'http://localhost:3000/avatars'
 let board = document.querySelector('#grid')
 const h1 = document.querySelector('#header')
 
-board.style.display = "none"
+// board.style.display = "none"
 
 
 //use this funcation to change background

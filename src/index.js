@@ -6,6 +6,9 @@ const board = document.querySelector('#grid')
 
 
 
+
+
+
 // clear leaderboard screen goes to sign in prompt
 function clearLeaderBoard(){
     const header = document.createElement('h1').innerHTML = 'Welcome to flatiron-school-experience-game'
