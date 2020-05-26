@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', function(e){
 
-const ursersUrl = 'http://localhost:3000/users'
+const usersUrl = 'http://localhost:3000/users'
 const avatarsUrl = 'http://localhost:3000/avatars'
-const board = document.querySelector('.board')
+const board = document.querySelector('#grid')
+
+
 
 // clear leaderboard screen goes to sign in prompt
 function clearLeaderBoard(){
@@ -17,7 +19,7 @@ function clearLeaderBoard(){
     board.appendChild(signIn)
     board.appendChild(button)
    //// fetch request for the avatars matching this persons id
-   //// or post reqest creating user 
+   //// or post request creating user 
 }
 
 /// our leader board can be up for like 5-7 seconds before user is prompted to sign in
@@ -47,9 +49,9 @@ function leaderBoard(array){
 
 }
 
-fetch(ursersUrl).then(res => res.json()).then(users => leaderBoard(users))
+fetch(usersUrl).then(res => res.json()).then(users => leaderBoard(users))
 
-//leaderboard only lasts 6 secons on the page 
+//leaderboard only lasts 6 seconds on the page 
 window.setTimeout(clearLeaderBoard, 6000)
 
 
