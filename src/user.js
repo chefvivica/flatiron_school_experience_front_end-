@@ -2,7 +2,7 @@ const ursersUrl = 'http://localhost:3000/users'
 const avatarsUrl = 'http://localhost:3000/avatars'
 let board = document.querySelector('#grid')
 const h1 = document.querySelector('#header')
-
+const logIn = document.querySelector('form')
 // board.style.display = "none"
 
 
@@ -21,15 +21,10 @@ function leaderBoard(users){
           line.className = "lines"
           line.setAttribute('dataset', `${avatar.skills}`)
           line.innerText = `🔥${whoPlayed} as ${avatar.name} scored ${avatar.points} points gained ${avatar.skills} skills in ${avatar.turns} turns`
-          board.append(line)
+          logIn.append(line)
       })
   })
 }
-
-
-
-
-
 
 
 
@@ -89,7 +84,7 @@ document.addEventListener('click',e=>{
             const oldAvatarDiv = document.createElement('div')
             oldAvatarDiv.className = 'avatarSelectDiv'
             //// idk why the pictures are coming out weird maybe its my computer
-            oldAvatarDiv.innerHTML =`<span id="${returningPlayerId} class="avatars"><img src="${avatar.image_url}"><br><h3> ${avatar.name} | ${avatar.skills} Skills</h3><br><button class="${returningPlayerId}>Play As ${avatar.name}</button></span>`
+            oldAvatarDiv.innerHTML =`<span id="${returningPlayerId} class="avatars"><img src="${avatar.image_url}"><br><h3 class='avatars' > ${avatar.name} | ${avatar.skills} Skills</h3><br><button class="${returningPlayerId}>Play As ${avatar.name}</button></span>`
             console.log(avatar.image_url)
             avatarDiv.append(oldAvatarDiv)
            })
@@ -109,6 +104,16 @@ document.addEventListener('click',e=>{
     `
     document.body.append(avatarDiv) }
     break;
+
+
+    case ('avatars'):
+      const source = e.target.parentElement
+      const userID = source.id
+      const pic = source.querySelector('img').src
+      console.log(userID, pic)
+      ////pulling out picture and user id from returning user just so we can have it to put in our board 
+
+    break; 
   }
 
 
