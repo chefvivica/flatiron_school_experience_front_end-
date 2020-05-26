@@ -2,7 +2,7 @@ const ursersUrl = 'http://localhost:3000/users'
 const avatarsUrl = 'http://localhost:3000/avatars'
 let board = document.querySelector('#grid')
 const h1 = document.querySelector('#header')
-
+const logIn = document.querySelector('form')
 board.style.display = "none"
 
 
@@ -21,15 +21,10 @@ function leaderBoard(users){
           line.className = "lines"
           line.setAttribute('dataset', `${avatar.skills}`)
           line.innerText = `🔥${whoPlayed} as ${avatar.name} scored ${avatar.points} points gained ${avatar.skills} skills in ${avatar.turns} turns`
-          board.append(line)
+          logIn.append(line)
       })
   })
 }
-
-
-
-
-
 
 
 
