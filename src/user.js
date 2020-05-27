@@ -5,13 +5,13 @@ const h1 = document.querySelector('#header')
 const logIn = document.querySelector('form')
 const playButton = document.querySelector('.picked_avatar')
 board.style.display = "none"
-
+let allAvatarImage = []
 
 //use this funcation to change background
 const background = (imgUrl) =>{
   document.body.style.backgroundImage = `url(${imgUrl})`;
 }
-
+  
 
 fetch(ursersUrl).then(res => res.json()).then(users => leaderBoard(users))
 function leaderBoard(users){
@@ -77,35 +77,34 @@ document.addEventListener('click',e=>{
     const avatarDiv = document.createElement('div')
     avatarDiv.className = 'avatarSelectDiv'
   ////returning player has option of selecting from old avatars 
-     const header =document.querySelector('h1')
+    const header =document.querySelector('h1')
     if (header.className == 'returningUser'){
         const returningPlayerId = document.querySelector('h1').id
-       fetch(`${ursersUrl}/${returningPlayerId}`).then(res => res.json()).then(player => {
-           player.avatars.forEach(avatar => {
-            const oldAvatarDiv = document.createElement('div')
-            oldAvatarDiv.className = 'avatarSelectDiv'
-            //// idk why the pictures are coming out weird maybe its my computer
-            oldAvatarDiv.innerHTML =`<span id="${returningPlayerId} class="avatars"><img src="${avatar.image_url}"><br><h3 class='avatars' > ${avatar.name} | ${avatar.skills} Skills</h3><br><button class="${returningPlayerId}>Play As ${avatar.name}</button></span>`
-            console.log(avatar.image_url)
-            avatarDiv.append(oldAvatarDiv)
-           })
-           document.body.append(avatarDiv)
-       })
-     
-    } else {
-
-    avatarDiv.innerHTML =`
-    <span class="avatars"><img src = './img/avt1.png'/></span>
-    <span class="avatars"><img src = './img/avt2.png'/></span>
-    <span class="avatars"><img src = './img/avt3.png'/></span>
-    <span class="avatars"><img src = './img/avt4.png'/></span>
-    <span class="avatars"><img src = './img/avt5.png'/></span>
-    <span class="avatars"><img src = './img/avt6.png'/></span>
-    <span class="avatars"><img src = './img/avt7.png'/></span>
-    `
-    document.body.append(avatarDiv) }
+      fetch(`${ursersUrl}/${returningPlayerId}`).then(res => res.json()).then(player => {
+        player.avatars.forEach(avatar => {
+        const oldAvatarDiv = document.createElement('div')
+        oldAvatarDiv.className = 'avatarSelectDiv'
+        //// idk why the pictures are coming out weird maybe its my computer
+        oldAvatarDiv.innerHTML =`<span id="${returningPlayerId} class="avatars"><img src="${avatar.image_url}"><br><h3 class='avatars' > ${avatar.name} | ${avatar.skills} Skills</h3><br><button class="${returningPlayerId}>Play As ${avatar.name}</button></span>`
+        console.log(avatar.image_url)
+        avatarDiv.append(oldAvatarDiv)
+        })
+        document.body.append(avatarDiv)
+      })
+    } else {      
+      avatarDiv.innerHTML =`
+      <span class="avatars"><img src = 'https://i.pinimg.com/originals/fa/c2/ab/fac2abb69ff8503d184be8d5417ea650.png'/></span>
+      <span class="avatars"><img src = 'https://i.ya-webdesign.com/images/character-transparent-pixel-16.png'/></span>
+      <span class="avatars"><img src = 'https://i.pinimg.com/originals/5f/b9/a7/5fb9a78a47f499a08cc32d890d4252ee.png'/></span>
+      <span class="avatars"><img src = 'https://i.ya-webdesign.com/images/drawing-avatars-avatar-face-17.png'/></span>
+      <span class="avatars"><img src = 'https://i.pinimg.com/originals/04/9e/c3/049ec39b121d26f40a9bf5620a821857.png'/></span>
+      <span class="avatars"><img src = 'https://i.pinimg.com/originals/bb/14/66/bb146666c1e70354a6555c650375fbc8.png'/></span>
+      <span class="avatars"><img src = 'https://i.pinimg.com/originals/70/d1/da/70d1da88428daf4610a70081ec8b28aa.png'/></span>
+      `
+      document.body.append(avatarDiv)
+  } 
     break;
-
+    
 
     case ('avatars'):
       const source = e.target.parentElement
@@ -119,7 +118,8 @@ document.addEventListener('click',e=>{
     case('picked_avatar'):
     const pickedAv = document.querySelector('.pickedAvt')
     const pickedAvForm = document.querySelector('.pickedAvtForm')
-    console.log(pickedAv)
+    newAvatarName = pickedAvForm.name.value
+    // pulling out the new avatar name from the form
     pickedAv.style.display = 'none'
     pickedAvForm.style.display = 'none'
     board.style.display = 'inline-grid'
@@ -157,7 +157,7 @@ document.addEventListener('click',e=>{
       pickedAvtNameForm.className = 'pickedAvtForm'
       pickedAvtNameForm.innerHTML = `
       <label for="avater_name">I am your avatar, please give me a name.</label><br><br>
-      <input type="text" name="avatar['name']" placeholder = "please give your avatar a name"/><br><br>
+      <input type="text" name="name" placeholder = "please give your avatar a name"/><br><br>
       <input type="submit" value="Play" class="picked_avatar"/>
       `
       document.body.append(pickedAvt)
