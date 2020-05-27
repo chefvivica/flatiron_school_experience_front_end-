@@ -106,7 +106,7 @@ document.addEventListener('click',e=>{
           body: JSON.stringify({
             username: username
           })
-        }).then(res => res.json()).then(user => user.id )
+        }).then(res => res.json()).then(user => {const newUser = user.id}) )
       }
     }))
 
@@ -168,7 +168,7 @@ document.addEventListener('click',e=>{
     board.style.display = 'inline-grid'
     ///need post request to avatars 
     /// need to grab new user Id from line 109 
-  
+   console.log(newUser)
 
     const avCircle = document.createElement('span')
     avCircle.setAttribute('class','avatarCircle')
