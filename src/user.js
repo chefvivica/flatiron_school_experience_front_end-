@@ -11,6 +11,13 @@ let totalPoints = 0
 const p = document.createElement('p')
 document.body.appendChild(p)
 
+
+function winner(num){
+  if (num >= 15 ){
+    board.textContent = 'YOU WIN!'
+  }
+}
+
 // dice roll
 const dice = document.querySelector('.dieBtn')
 dice.addEventListener('click', function(e){
@@ -22,8 +29,8 @@ dice.addEventListener('click', function(e){
   destination.appendChild(dot)
    const nS = destination.id
   if (nS == 13 || nS == 8){
-    alert('Bundle Install, loose four points')
-    totalPoints -= 4
+    alert('Bundle Install, loose two points')
+    totalPoints -= 2
   } else if (nS == 9 || nS == 15){
     alert('Internets not working, loose two points')
     totalPoints -= 2
@@ -40,19 +47,20 @@ dice.addEventListener('click', function(e){
      alert('Congradulations! You made it through another leacture, earn five points')
      totalPoints += 5
   } else if (nS == 1 || nS == 5){
-    alert('Pairing lab was super hard but you got throught it, earn 3 points.')
-    totalPoints += 3
+    alert('Pairing lab was super hard but you got throught it, earn four points.')
+    totalPoints += 4
   } else if (nS == 2 || nS == 10){
-    alert('New Rails labs are all code alongs, earn one point.')
-    totalPoints -= 1
+    alert('New Rails labs are all code alongs, earn 3 point.')
+    totalPoints += 3
   } else if (nS == 4 || nS == 16){
-    alert('Event delegation is too confusing, loose three points.')
-    totalPoints -= 3
+    alert('Event delegation is too confusing, loose two points.')
+    totalPoints -= 2
   } else if (nS == 7 || nS == 18){
     alert('React is super easy, earn six points.')
     totalPoints += 6
   }
   p.textContent = `${totalPoints} points`
+  winner(totalPoints)
 })
 
 //use this function to change background
