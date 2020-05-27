@@ -6,7 +6,10 @@ const logIn = document.querySelector('form')
 const playButton = document.querySelector('.picked_avatar')
 board.style.display = "none"
 let allAvatarImage = []
-
+let player = [ ]
+let totalPoints = 0
+const p = document.createElement('p')
+document.body.appendChild(p)
 
 // dice roll
 const dice = document.querySelector('.dieBtn')
@@ -18,21 +21,38 @@ dice.addEventListener('click', function(e){
   const destination = document.getElementById(newSquare)
   destination.appendChild(dot)
    const nS = destination.id
-  if (nS == 13 || nS == 6){
-    alert('Bundle Install, Start Again')
-    document.getElementById(1).appendChild(dot)
+  if (nS == 13 || nS == 8){
+    alert('Bundle Install, loose four points')
+    totalPoints -= 4
   } else if (nS == 9 || nS == 15){
-    alert('Internets not working, move back four spaces')
-    document.getElementById(`${currentSquare} - 4`).appendChild(dot)
-  } else if (nS == 13 || nS == 17 || nS == 20){
-    alert('Congratulations! You passed the code challenge')
+    alert('Internets not working, loose two points')
+    totalPoints -= 2
+  } else if (nS == 17 || nS == 20){
+    alert('Congratulations! You passed the code challenge, earn five points')
+    totalPoints += 5
   } else if (nS == 6 || nS == 11){
-    alert('Michelle explained something to you! Move forward an extra 3 steps')
-    document.getElementById(`${nS} + 3`).appendChild(dot)
+    alert('Michelle explained something to you! Earn three points')
+    totalPoints += 3
   } else if (nS == 12 || nS == 19){
-    alert('Its blog week! Go back to the square you were at')
-    document.getElementById(currentSquare).appendChild(dot)
+    alert('Its blog week! Loose one point')
+    totalPoints -= 1 
+  } else if (nS == 3 || nS == 14){
+     alert('Congradulations! You made it through another leacture, earn five points')
+     totalPoints += 5
+  } else if (nS == 1 || nS == 5){
+    alert('Pairing lab was super hard but you got throught it, earn 3 points.')
+    totalPoints += 3
+  } else if (nS == 2 || nS == 10){
+    alert('New Rails labs are all code alongs, earn one point.')
+    totalPoints -= 1
+  } else if (nS == 4 || nS == 16){
+    alert('Event delegation is too confusing, loose three points.')
+    totalPoints -= 3
+  } else if (nS == 7 || nS == 18){
+    alert('React is super easy, earn six points.')
+    totalPoints += 6
   }
+  p.textContent = `${totalPoints} points`
 })
 
 //use this function to change background
@@ -57,7 +77,7 @@ function leaderBoard(users){
 
 
 
-document.body.style.backgroundImage =  "url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQcyO7WgVaOZdHSuDkWuXeZGFtBYsY6pjzVLrv1Gk2kmONGljl9&usqp=CAU')";
+// document.body.style.backgroundImage =  "url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQcyO7WgVaOZdHSuDkWuXeZGFtBYsY6pjzVLrv1Gk2kmONGljl9&usqp=CAU')";
 
 const logInForm = document.querySelector('#logInForm')
 document.addEventListener('click',e=>{
@@ -72,7 +92,7 @@ document.addEventListener('click',e=>{
     <input type="submit" name="commit" value="Go" class="log_in_btn" />
     `
     document.body.append(logInForm)
-   
+  
     break;
 
     case("log_in_btn"):
@@ -102,10 +122,11 @@ document.addEventListener('click',e=>{
           body: JSON.stringify({
             username: username
           })
-        }).then(res => res.json()).then(user => {const newUser = user.id}) )
+        }).then(res => res.json()).then(user => console.log(user) )
       }
     }))
 
+    console.log(player[0])
     break;
 
     case("pickAvatarBtn"):
@@ -126,6 +147,7 @@ document.addEventListener('click',e=>{
         oldAvatarDiv.innerHTML =`<span id="${returningPlayerId} class="avatars"><img src="${avatar.image_url}"><br><h3 class='avatars' > ${avatar.name} | ${avatar.skills} Skills</h3><br><button class="${returningPlayerId}>Play As ${avatar.name}</button></span>`
         console.log(avatar.image_url)
         avatarDiv.append(oldAvatarDiv)
+        ///add in avatars to pick from 
         })
         document.body.append(avatarDiv)
       })
@@ -151,6 +173,7 @@ document.addEventListener('click',e=>{
       const pic = source.querySelector('img').src
       console.log(userID, pic)
       ////pulling out picture and user id from returning user just so we can have it to put in our board 
+      //// fetch request for skills and points 
 
     break; 
 
@@ -163,8 +186,8 @@ document.addEventListener('click',e=>{
     pickedAvForm.style.display = 'none'
     board.style.display = 'inline-grid'
     ///need post request to avatars 
-    /// need to grab new user Id from line 109 
-   console.log(newUser)
+    /// need to grab new user Id from line 109
+    console.log(player)
 
     const avCircle = document.createElement('span')
     avCircle.setAttribute('class','avatarCircle')
@@ -211,3 +234,4 @@ document.addEventListener('click',e=>{
 
 
 })
+  
