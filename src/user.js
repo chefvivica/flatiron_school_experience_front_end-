@@ -5,7 +5,7 @@ const h1 = document.querySelector('#header')
 const logIn = document.querySelector('form')
 const playButton = document.querySelector('.picked_avatar')
 board.style.display = "none"
-let allAvatarImage = []
+
 
 
 // dice roll
