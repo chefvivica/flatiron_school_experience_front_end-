@@ -1,4 +1,4 @@
-const ursersUrl = 'http://localhost:3000/users'
+const usersUrl = 'http://localhost:3000/users'
 const avatarsUrl = 'http://localhost:3000/avatars'
 let board = document.querySelector('#grid')
 const h1 = document.querySelector('#header')
@@ -6,6 +6,7 @@ const logIn = document.querySelector('form')
 const playButton = document.querySelector('.picked_avatar')
 board.style.display = "none"
 let allAvatarImage = []
+
 
 // dice roll
 const dice = document.querySelector('.dieBtn')
@@ -34,17 +35,12 @@ dice.addEventListener('click', function(e){
   }
 })
 
-
-
-
-
-//use this funcation to change background
+//use this function to change background
 const background = (imgUrl) =>{
   document.body.style.backgroundImage = `url(${imgUrl})`;
 }
   
-
-fetch(ursersUrl).then(res => res.json()).then(users => leaderBoard(users))
+fetch(usersUrl).then(res => res.json()).then(users => leaderBoard(users))
 function leaderBoard(users){
   users.forEach(person => {
       const whoPlayed = person.username
@@ -92,12 +88,12 @@ document.addEventListener('click',e=>{
     pickAvatarBtn.textContent = 'Pick Your Avatar'
     document.body.append(pickAvatarBtn)
     /// welcome back message for returning players
-    fetch(ursersUrl).then(res => res.json()).then(users => users.forEach(user =>{
+    fetch(usersUrl).then(res => res.json()).then(users => users.forEach(user =>{
       if (user.username == username){ 
-        const heaer = document.querySelector('div')
-        heaer.innerHTML = `<h1 class='returningUser' id=${user.id}> Welcom Back ${username}!</h1><br><button class='picked_avatar'>Play</button>`
+        const header = document.querySelector('div')
+        header.innerHTML = `<h1 class='returningUser' id=${user.id}> Welcome Back ${username}!</h1><br><button class='picked_avatar'>Play</button>`
       } else {
-        fetch(ursersUrl, {
+        fetch(usersUrl, {
           method: 'POST', 
           headers: {
             "content-type": "application/json",
@@ -122,7 +118,7 @@ document.addEventListener('click',e=>{
     const header =document.querySelector('h1')
     if (header.className == 'returningUser'){
         const returningPlayerId = document.querySelector('h1').id
-      fetch(`${ursersUrl}/${returningPlayerId}`).then(res => res.json()).then(player => {
+      fetch(`${usersUrl}/${returningPlayerId}`).then(res => res.json()).then(player => {
         player.avatars.forEach(avatar => {
         const oldAvatarDiv = document.createElement('div')
         oldAvatarDiv.className = 'avatarSelectDiv'
