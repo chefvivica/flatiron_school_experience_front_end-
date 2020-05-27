@@ -204,6 +204,13 @@ div.dice{
   border: #999 1px solid;
   border-radius: 20px;
 }
+.avatarCircle {
+  height: 30px;
+  width: 30px;
+  background-color: pink;
+  border-radius: 50%;
+  display: inline-block;
+}
 
 .avatars,img{
   width: 240px;

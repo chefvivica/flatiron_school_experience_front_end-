@@ -7,6 +7,37 @@ const playButton = document.querySelector('.picked_avatar')
 board.style.display = "none"
 let allAvatarImage = []
 
+// dice roll
+const dice = document.querySelector('.dieBtn')
+dice.addEventListener('click', function(e){
+  const num = parseInt(document.querySelector('#die1').innerHTML)
+  const dot = document.querySelector('.avatarCircle')
+  const currentSquare = dot.parentElement.id
+  const newSquare = parseInt(currentSquare) + num
+  const destination = document.getElementById(newSquare)
+  destination.appendChild(dot)
+   const nS = destination.id
+  if (nS == 13 || nS == 6){
+    alert('Bundle Install, Start Again')
+    document.getElementById(1).appendChild(dot)
+  } else if (nS == 9 || nS == 15){
+    alert('Internets not working, move back four spaces')
+    document.getElementById(`${currentSquare} - 4`).appendChild(dot)
+  } else if (nS == 13 || nS == 17 || nS == 20){
+    alert('Congratulations! You passed the code challenge')
+  } else if (nS == 6 || nS == 11){
+    alert('Michelle explained something to you! Move forward an extra 3 steps')
+    document.getElementById(`${nS} + 3`).appendChild(dot)
+  } else if (nS == 12 || nS == 19){
+    alert('Its blog week! Go back to the square you were at')
+    document.getElementById(currentSquare).appendChild(dot)
+  }
+})
+
+
+
+
+
 //use this funcation to change background
 const background = (imgUrl) =>{
   document.body.style.backgroundImage = `url(${imgUrl})`;
@@ -64,7 +95,18 @@ document.addEventListener('click',e=>{
     fetch(ursersUrl).then(res => res.json()).then(users => users.forEach(user =>{
       if (user.username == username){ 
         const heaer = document.querySelector('div')
-        heaer.innerHTML = `<h1 class='returningUser' id=${user.id}> Welcom Back ${username}!</h1>`
+        heaer.innerHTML = `<h1 class='returningUser' id=${user.id}> Welcom Back ${username}!</h1><br><button class='picked_avatar'>Play</button>`
+      } else {
+        fetch(ursersUrl, {
+          method: 'POST', 
+          headers: {
+            "content-type": "application/json",
+            accept: 'application/json'
+          },
+          body: JSON.stringify({
+            username: username
+          })
+        }).then(res => res.json()).then(user => user.id )
       }
     }))
 
@@ -103,6 +145,7 @@ document.addEventListener('click',e=>{
       `
       document.body.append(avatarDiv)
   } 
+
     break;
     
 
@@ -123,14 +166,17 @@ document.addEventListener('click',e=>{
     pickedAv.style.display = 'none'
     pickedAvForm.style.display = 'none'
     board.style.display = 'inline-grid'
+    ///need post request to avatars 
+    /// need to grab new user Id from line 109 
+  
+
+    const avCircle = document.createElement('span')
+    avCircle.setAttribute('class','avatarCircle')
+    console.log(avCircle)
+    const startTile = document.getElementById(1)
+    startTile.appendChild(avCircle)
     break;
   }
-
-
-
-
-
-
 
   const avatarChars = document.querySelectorAll('.avatars')
   let avatarCharArray = Array.from(avatarChars)
