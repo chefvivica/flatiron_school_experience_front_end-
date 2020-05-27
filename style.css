@@ -7,7 +7,7 @@
 #header{
   top: 40px;
   position: relative;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: sans-serif;
   background-color: coral;
   height: 50px;
 
@@ -34,7 +34,7 @@ body {
   float: right;
   height: 40px;
   opacity: 0.9;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: sans-serif;
   font-weight: bold;
   font-size: 20px;
 
@@ -57,7 +57,7 @@ button:hover {
 .lines{
   width: 100%;
   font-size: 20px;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: sans-serif;
   color: #1a1715;
   float: right;
   animation-name: example;
@@ -77,7 +77,7 @@ button:hover {
   height: 30px;
   width: 30%;
   font-size: medium;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: sans-serif;
 
   
 }
@@ -111,10 +111,10 @@ button:hover {
 
 .pickedAvtForm{
   position: fixed;
-  left: 60%;
+  left: 60%; 
   top: 30%;
   width: 300px;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: sans-serif;
   font-weight: bolder;
   font-size: xx-large;
 }
@@ -172,8 +172,8 @@ input[type="submit"]{
   border-radius: 15px;
   text-align: center;
   border: 3px solid #757575;
-  height: 125px;
-  width: 125px;
+  height: 100px;
+  width: 100px;
 }
 
 div.dice{
@@ -202,5 +202,6 @@ div.dice{
   display: inline-block;
 }
 
-
-
+.avatars,img{
+  width: 240px;
+}
