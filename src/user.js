@@ -132,6 +132,18 @@ document.addEventListener('click',e=>{
             avatarDiv.append(oldAvatarDiv)
            })
            document.body.append(avatarDiv)
+           avatarDiv.innerHTML +=`
+              <h2> Or pick a new Avatar</h2>
+              <span class="avatars"><img src = './img/avt1.png'/></span>
+              <span class="avatars"><img src = './img/avt2.png'/></span>
+              <span class="avatars"><img src = './img/avt3.png'/></span>
+              <span class="avatars"><img src = './img/avt4.png'/></span>
+              <span class="avatars"><img src = './img/avt5.png'/></span>
+              <span class="avatars"><img src = './img/avt6.png'/></span>
+              <span class="avatars"><img src = './img/avt7.png'/></span>
+              `
+              document.body.append(avatarDiv)
+
        })
      
     } else {
