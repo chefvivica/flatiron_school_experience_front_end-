@@ -9,7 +9,9 @@ let allAvatarImage = []
 let player = [ ]
 let totalPoints = 0
 const p = document.createElement('p')
-document.body.appendChild(p)
+const centerTile = document.querySelector('.center-tile')
+centerTile.appendChild(p)
+// document.body.appendChild(p)
 
 
 function winner(num){
