@@ -96,6 +96,17 @@ document.addEventListener('click',e=>{
       if (user.username == username){ 
         const heaer = document.querySelector('div')
         heaer.innerHTML = `<h1 class='returningUser' id=${user.id}> Welcom Back ${username}!</h1><br><button class='picked_avatar'>Play</button>`
+      } else {
+        fetch(ursersUrl, {
+          method: 'POST', 
+          headers: {
+            "content-type": "application/json",
+            accept: 'application/json'
+          },
+          body: JSON.stringify({
+            username: username
+          })
+        }).then(res => res.json()).then(user => user.id )
       }
     }))
 
@@ -154,6 +165,10 @@ document.addEventListener('click',e=>{
     pickedAv.style.display = 'none'
     pickedAvForm.style.display = 'none'
     board.style.display = 'inline-grid'
+    ///need post request to avatars 
+    /// need to grab new user Id from line 109 
+  
+
     const avCircle = document.createElement('span')
     avCircle.setAttribute('class','avatarCircle')
     console.log(avCircle)
