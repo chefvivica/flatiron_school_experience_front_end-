@@ -190,7 +190,8 @@ input[type="submit"]{
   grid-template-rows:    repeat(6,1fr);
   grid-template-columns: repeat(6,1fr);
   grid-gap: 10px;
-  margin-top: -55px;
+  padding-top: 0px;
+
 }
 
 .center-tile {

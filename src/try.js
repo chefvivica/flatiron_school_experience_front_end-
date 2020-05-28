@@ -125,6 +125,7 @@ const pickAvatar =(avatarDiv) =>{
       const pickedAvtNameForm = document.createElement('form')
       pickedAvtNameForm.className = 'pickedAvtForm'
       pickedAvtNameForm.dataset.name = username
+     
       pickedAvtNameForm.innerHTML = `
       <label for="avatar_name" class="avatarName">I'm your avatar! Please give me a name.</label><br><br>
       <input type="text" name="name" placeholder = "please give your avatar a name"/><br><br>
@@ -134,7 +135,7 @@ const pickAvatar =(avatarDiv) =>{
       document.body.append(pickedAvtNameForm)
       let img = document.querySelector('#myAvt')
       newAvatarImageUrl = img.src
-      console.log(img.src)
+      pickedAvtNameForm.dataset.img = newAvatarImageUrl
       pickedAvtNameForm.addEventListener('submit',startGame)
     }
   })
@@ -144,10 +145,11 @@ const pickAvatar =(avatarDiv) =>{
 const startGame = (e) =>{
   e.preventDefault()
   const username = e.target.dataset.name
-  console.log(username)
   const  pickedAvForm = document.querySelector('.pickedAvtForm')
   const pickedAv = document.querySelector('.pickedAvt')
   newAvatar.name =  pickedAvForm.name.value
+  newAvatarImageUrl = e.target.dataset.img
+  console.log(newAvatarImageUrl)
     fetch(avatarsUrl, {
       method: 'POST',
       headers: {
@@ -163,7 +165,7 @@ const startGame = (e) =>{
       })
     }).then(res => res.json()).then(res => console.log(res))
 
-  console.log(newAvatar)
+
 
   pickedAv.style.display = 'none'
   pickedAvForm.style.display = 'none'
