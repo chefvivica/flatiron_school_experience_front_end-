@@ -26,6 +26,7 @@ let avatarName = null
 let newAvatarImageUrl = null 
 let turns = 0
 
+
 //starting welcome page display the leader-board and sign in 
 
 document.body.style.backgroundImage =  "url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQcyO7WgVaOZdHSuDkWuXeZGFtBYsY6pjzVLrv1Gk2kmONGljl9&usqp=CAU')";
@@ -43,6 +44,36 @@ logInBtn.addEventListener('click',e=>{
     document.body.append(logInForm)    
 })
 
+
+const continueButton = document.querySelector('.returning_user')
+
+continueButton.addEventListener('click', function(e){
+  e.preventDefault()
+  continueButton.style.display = 'none'
+  background(' ')
+  logInForm.innerHTML = `
+    <label for="user_name">Name</label>
+    <input type="text" name="user[name]" id="user_name" placeholder="please enter your user name here"/>
+    
+    <input type="submit" name="commit" value="Go" class="log_in_btn" />
+    `
+    document.body.append(logInForm)   
+    const returningUser = document.querySelector('input').value
+
+    fetch(usersUrl).then(res => res.json()).then(users =>{
+      users.forEach(user =>  {if (user.name == returningUser){
+        const header = document.querySelector('div')
+        userID = user.id 
+        avatarID = user.avatars[0].id 
+        totalPoints = user.avatars[0].points 
+        console.log(user.avatars[0].id)
+        avatarName = user.avatars[0].name
+        turns = user.avatars[0].turns 
+        header.innerHTML = `<h1 class='returningUser'> Welcome Back ${username}!</h1><br><button class='picked_avatar'>Play</button>`
+      }})
+    })
+
+})
 
 
 // //grabing the user name
@@ -362,7 +393,7 @@ function movePlayerPiece(){
             }, body: JSON.stringify({
               points: totalPoints
             })
-          }).then(res => res.json()).then(res => console.log(res))
+          })
       }
   } else {
       const startTile = document.getElementById('1')
