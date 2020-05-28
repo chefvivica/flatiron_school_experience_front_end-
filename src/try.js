@@ -161,7 +161,12 @@ const startGame = (e) =>{
   <h2>${newAvatar.name}</h3>
   <img src = '${newAvatar.image_url}'/>
   `
-  centerTile.append(yourAvt)
+  // centerTile.append(yourAvt)
+  const ul = createUserUl(username)
+  ul.id = "userInfo"
+  document.body.append(ul)
+  ul.append(yourAvt)
+
 }
 const dice = document.querySelector('.dieBtn')
 dice.addEventListener('click', function(e){
@@ -209,7 +214,6 @@ dice.addEventListener('click', function(e){
 })
 
 
-
 //////////////////////////////// helper functions 
 
 const background = (imgUrl) =>{
@@ -242,8 +246,10 @@ function leaderBoard(users){
 const createUserUl = (username) =>{
  const ul = document.createElement('ul')
  ul.innerHTML =`
- <h1> ${username}</h1>
+ <h1> Welcome ${username}</h1>
+ <p> Here is your Avatar</p>
  `
+ return ul
 }
 
 
