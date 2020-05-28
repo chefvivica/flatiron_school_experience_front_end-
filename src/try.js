@@ -34,6 +34,8 @@ logInBtn.addEventListener('click',e=>{
     document.body.append(logInForm)    
 })
 
+
+
 // //grabing the user name
 logInForm.addEventListener("submit",e=>{
   e.preventDefault()
@@ -50,6 +52,8 @@ const getNewUser = username =>{
   pickAvatarBtn.className = 'pickAvatarBtn'
   pickAvatarBtn.textContent = 'Pick Your Avatar'
   document.body.append(pickAvatarBtn)
+  pickAvatarBtn.dataset.name = username
+  // console.log(pickAvatarBtn)
   // we could get the new user id we can implement this later
   // fetch(usersUrl, {
   //   method: 'POST', 
@@ -68,11 +72,13 @@ const getNewUser = username =>{
 
 // click butter to selete a avatar
 const getAvatar = (e)=>{
+  const username = e.target.dataset.name 
   newPlayer.id= e.target.dataset.id
   document.body.style.backgroundImage ='none'
   document.body.style.backgroundColor = "#9edee6"
   e.target.style.display ='none'
   const avatarDiv = document.createElement('div')
+  avatarDiv.dataset.name = username
   avatarDiv.className = 'avatarSelectDiv'
   avatarDiv.innerHTML =`
   <span class="avatars"><img src = 'https://i.pinimg.com/originals/fa/c2/ab/fac2abb69ff8503d184be8d5417ea650.png'/></span>
@@ -87,8 +93,10 @@ const getAvatar = (e)=>{
   pickAvatar(avatarDiv)
 }
 
-
+// pick a Avatar from collection and name it 
 const pickAvatar =(avatarDiv) =>{
+  const username = avatarDiv.dataset.name
+  console.log(username)
   const avatarChars = document.querySelectorAll('.avatars')
   let avatarCharArray = Array.from(avatarChars)
   avatarCharArray.forEach(avt=>{
@@ -112,6 +120,7 @@ const pickAvatar =(avatarDiv) =>{
       `
       const pickedAvtNameForm = document.createElement('form')
       pickedAvtNameForm.className = 'pickedAvtForm'
+      pickedAvtNameForm.dataset.name = username
       pickedAvtNameForm.innerHTML = `
       <label for="avatar_name" class="avatarName">I'm your avatar! Please give me a name.</label><br><br>
       <input type="text" name="name" placeholder = "please give your avatar a name"/><br><br>
@@ -126,8 +135,11 @@ const pickAvatar =(avatarDiv) =>{
   })
 }
 
+//starting game!!!!!!let's go!
 const startGame = (e) =>{
   e.preventDefault()
+  const username = e.target.dataset.name
+  console.log(username)
   const  pickedAvForm = document.querySelector('.pickedAvtForm')
   const pickedAv = document.querySelector('.pickedAvt')
   newAvatar.name =  pickedAvForm.name.value
@@ -150,7 +162,12 @@ const startGame = (e) =>{
   <h2>${newAvatar.name}</h3>
   <img src = '${newAvatar.image_url}'/>
   `
-  centerTile.append(yourAvt)
+  // centerTile.append(yourAvt)
+  const ul = createUserUl(username)
+  ul.id = "userInfo"
+  document.body.append(ul)
+  ul.append(yourAvt)
+
 }
 const dice = document.querySelector('.dieBtn')
 dice.addEventListener('click', function(e){
@@ -198,7 +215,6 @@ dice.addEventListener('click', function(e){
 })
 
 
-
 //////////////////////////////// helper functions 
 
 const background = (imgUrl) =>{
@@ -228,7 +244,14 @@ function leaderBoard(users){
   })
 }
 
-
+const createUserUl = (username) =>{
+ const ul = document.createElement('ul')
+ ul.innerHTML =`
+ <h1> Welcome ${username}</h1>
+ <p> Here is your Avatar</p>
+ `
+ return ul
+}
 
 
 
