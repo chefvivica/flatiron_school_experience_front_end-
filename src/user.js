@@ -5,9 +5,6 @@ const h1 = document.querySelector('#header')
 const logIn = document.querySelector('form')
 const playButton = document.querySelector('.picked_avatar')
 board.style.display = "none"
-<<<<<<< HEAD
-
-=======
 let allAvatarImage = []
 let player = [ ]
 let totalPoints = 0
@@ -15,7 +12,6 @@ const p = document.createElement('p')
 const centerTile = document.querySelector('.center-tile')
 centerTile.appendChild(p)
 // document.body.appendChild(p)
->>>>>>> d848186baf7a4fb251c9577aa16e61acde38504d
 
 
 function winner(num){
@@ -248,4 +244,3 @@ document.addEventListener('click',e=>{
 
 
 })
-  
