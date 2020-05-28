@@ -6,6 +6,11 @@ const logInForm = document.querySelector('#logInForm')
 const logInBtn = document.querySelector('#log_in')
 const logIn = document.querySelector('form')
 const playButton = document.querySelector('.picked_avatar')
+const notYetMsg = document.querySelector('.notYetMsg')
+notYetMsg.style.display = "none"
+board.style.display = 'none'
+
+const centerDisplayText = document.querySelector('#center-text')
 let newPlayer = {}
 let newAvatar = {}
 let totalPoints = 0
@@ -24,7 +29,6 @@ let turns = 0
 //starting welcome page display the leader-board and sign in 
 
 document.body.style.backgroundImage =  "url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQcyO7WgVaOZdHSuDkWuXeZGFtBYsY6pjzVLrv1Gk2kmONGljl9&usqp=CAU')";
-board.style.display = 'none'
 
 
 // show the sign in form
@@ -58,7 +62,6 @@ const getNewUser = username =>{
   pickAvatarBtn.textContent = 'Pick Your Avatar'
   document.body.append(pickAvatarBtn)
   pickAvatarBtn.dataset.name = username
-  console.log(pickAvatarBtn)
   fetch(usersUrl, {
     method: 'POST', 
     headers: {
@@ -100,7 +103,6 @@ const getAvatar = (e)=>{
 // pick a Avatar from collection and name it 
 const pickAvatar =(avatarDiv) =>{
   const username = avatarDiv.dataset.name
-  console.log(username)
   const avatarChars = document.querySelectorAll('.avatars')
   let avatarCharArray = Array.from(avatarChars)
   avatarCharArray.forEach(avt=>{
@@ -134,7 +136,6 @@ const pickAvatar =(avatarDiv) =>{
       document.body.append(pickedAvtNameForm)
       let img = document.querySelector('#myAvt')
       newAvatarImageUrl = img.src
-      console.log(img.src)
       pickedAvtNameForm.addEventListener('submit',startGame)
     }
   })
@@ -144,7 +145,7 @@ const pickAvatar =(avatarDiv) =>{
 const startGame = (e) =>{
   e.preventDefault()
   const username = e.target.dataset.name
-  console.log(username)
+
   const  pickedAvForm = document.querySelector('.pickedAvtForm')
   const pickedAv = document.querySelector('.pickedAvt')
   newAvatar.name =  pickedAvForm.name.value
@@ -163,7 +164,6 @@ const startGame = (e) =>{
       })
     }).then(res => res.json()).then(res => console.log(res))
 
-  console.log(newAvatar)
 
   pickedAv.style.display = 'none'
   pickedAvForm.style.display = 'none'
@@ -171,7 +171,7 @@ const startGame = (e) =>{
 
   const avCircle = document.createElement('span')
   avCircle.setAttribute('class','avatarCircle')
-  console.log(avCircle)
+
   const startTile = document.getElementById(1)
   startTile.appendChild(avCircle)
   const avtUl = document.querySelector('#centerAvt')
@@ -191,46 +191,49 @@ const startGame = (e) =>{
 }
 const dice = document.querySelector('.dieBtn')
 dice.addEventListener('click', function(e){
-  const num = parseInt(document.querySelector('#die1').innerHTML)
-  const dot = document.querySelector('.avatarCircle')
-  const currentSquare = dot.parentElement.id
-  const newSquare = parseInt(currentSquare) + num
-  const destination = document.getElementById(newSquare)
-  destination.appendChild(dot)
-  const nS = destination.id
-  if (nS == 13 || nS == 8){
-    alert('Bundle Install, loose two points')
-    totalPoints -= 2
-  } else if (nS == 9 || nS == 15){
-    alert('Internets not working, loose one points')
-    totalPoints -= 1
-  } else if (nS == 17 || nS == 20){
-    alert('Congratulations! You passed the code challenge, earn five points')
-    totalPoints += 5
-  } else if (nS == 6 || nS == 11){
-    alert('Michelle explained something to you! Earn three points')
-    totalPoints += 3
-  } else if (nS == 12 || nS == 19){
-    alert('Its blog week! Loose one point')
-    totalPoints -= 1 
-  } else if (nS == 3 || nS == 14){
-    alert('Congradulations! You made it through another leacture, earn five points')
-    totalPoints += 5
-  } else if (nS == 1 || nS == 5){
-    alert('Pairing lab was super hard but you got throught it, earn four points.')
-    totalPoints += 4
-  } else if (nS == 2 || nS == 10){
-    alert('New Rails labs are all code alongs, earn 3 point.')
-    totalPoints += 3
-  } else if (nS == 4 || nS == 16){
-    alert('Event delegation is too confusing, loose two points.')
-    totalPoints -= 2
-  } else if (nS == 7 || nS == 18){
-    alert('React is super easy, earn six points.')
-    totalPoints += 6
-  }
-  p.textContent = `${totalPoints} points`
-  winner(totalPoints)
+  rollDice()
+  movePlayerPiece()
+
+  // const num = parseInt(document.querySelector('#die1').innerHTML)
+  // const dot = document.querySelector('.avatarCircle')
+  // const currentSquare = dot.parentElement.id
+  // const newSquare = parseInt(currentSquare) + num
+  // const destination = document.getElementById(newSquare)
+  // destination.appendChild(dot)
+  // const nS = destination.id
+  // if (nS == 13 || nS == 8){
+  //   alert('Bundle Install, loose two points')
+  //   totalPoints -= 2
+  // } else if (nS == 9 || nS == 15){
+  //   alert('Internets not working, loose one points')
+  //   totalPoints -= 1
+  // } else if (nS == 17 || nS == 20){
+  //   alert('Congratulations! You passed the code challenge, earn five points')
+  //   totalPoints += 5
+  // } else if (nS == 6 || nS == 11){
+  //   alert('Michelle explained something to you! Earn three points')
+  //   totalPoints += 3
+  // } else if (nS == 12 || nS == 19){
+  //   alert('Its blog week! Loose one point')
+  //   totalPoints -= 1 
+  // } else if (nS == 3 || nS == 14){
+  //   alert('Congradulations! You made it through another leacture, earn five points')
+  //   totalPoints += 5
+  // } else if (nS == 1 || nS == 5){
+  //   alert('Pairing lab was super hard but you got throught it, earn four points.')
+  //   totalPoints += 4
+  // } else if (nS == 2 || nS == 10){
+  //   alert('New Rails labs are all code alongs, earn 3 point.')
+  //   totalPoints += 3
+  // } else if (nS == 4 || nS == 16){
+  //   alert('Event delegation is too confusing, loose two points.')
+  //   totalPoints -= 2
+  // } else if (nS == 7 || nS == 18){
+  //   alert('React is super easy, earn six points.')
+  //   totalPoints += 6
+  // }
+  // p.textContent = `${totalPoints} points`
+  // winner(totalPoints)
   
 })
 
@@ -273,5 +276,123 @@ const createUserUl = (username) =>{
  return ul
 }
 
+function rollDice(){
+  let die1 = document.getElementById('die1')
+  let status = document.getElementById('status')
+  let d1 = Math.floor(Math.random() * 6) + 1
+  let diceTotal = d1
+  die1.innerHTML = d1
+}
+
+function movePlayerPiece(){
+    
+  const dot = document.querySelector('.avatarCircle')
+  const idOfCurrentTile = parseInt(document.querySelector('.avatarCircle').parentNode.id)
+  let rollNumber = parseInt(die1.textContent)
+  let idOfTileToMoveTo = idOfCurrentTile + rollNumber
+
+  if (!(idOfTileToMoveTo > 20)){
+      notYetMsg.style.display = 'none'
+      dot.remove()
+      let tileToMoveTo = document.getElementById(`${idOfTileToMoveTo}`)
+      tileToMoveTo.appendChild(dot)
+
+      showTileEvents()
+      
+      function showTileEvents(){
+          let eventMessage = document.querySelector('.h4-msg')
+          let statusChange = document.querySelector('.h5-msg')
+
+          if (idOfTileToMoveTo === 2){
+              eventMessage.textContent = "You resolved an error by visiting Stack OverFlow!"
+              statusChange.textContent = "Points + 2"
+              totalPoints += 2
+          } else if (idOfTileToMoveTo === 3){
+              eventMessage.textContent = "You hung out with your cohort!"
+              statusChange.textContent = "Points + 1"
+              totalPoints += 1
+          } else if (idOfTileToMoveTo === 4){
+              eventMessage.textContent = "You installed an outdated extension. It caused bugs!"
+              statusChange.textContent = "Points - 2"
+              totalPoints -= 2
+          } else if (idOfTileToMoveTo === 5){
+  
+              eventMessage.textContent = "Michelle explained some complex code to you."
+              statusChange.textContent = "Points + 3"
+              totalPoints += 3
+          } else if (idOfTileToMoveTo === 6){
+              eventMessage.textContent = "You asked a coach for help on your code!"
+              statusChange.textContent = "Points + 3"
+              totalPoints += 3
+          } else if (idOfTileToMoveTo === 7){
+              eventMessage.textContent = "You took a break from code... and realized a silly error."
+              statusChange.textContent = "Points + 1"
+              totalPoints += 1
+          } else if (idOfTileToMoveTo === 8){
+              eventMessage.textContent = "Your environment wasn't set up correctly!"
+              statusChange.textContent = "Points - 4"
+              totalPoints -= 4
+          } else if (idOfTileToMoveTo === 9){
+              //add skills check
+              eventMessage.textContent = "You made it through another lecture!"
+              statusChange.textContent = "Points + 3"
+              totalPoints += 3
+          } else if (idOfTileToMoveTo === 10){
+              eventMessage.textContent = "You attended a review session!"
+              statusChange.textContent = "Points + 4"
+              totalPoints += 4
+          } else if (idOfTileToMoveTo === 11){
+              eventMessage.textContent = "The new Rails labs are all code-alongs."
+              statusChange.textContent = "Points + 2"
+              totalPoints += 2
+          } else if (idOfTileToMoveTo === 12){
+              eventMessage.textContent = "You installed an outdated extension. It caused bugs!"
+              statusChange.textContent = "Points - 2"
+              totalPoints -= 2
+          } else if (idOfTileToMoveTo === 13){
+              //add skills check
+              eventMessage.textContent = "You converted coffee into code!"
+              statusChange.textContent = "Points + 2"
+              totalPoints += 2
+          } else if (idOfTileToMoveTo === 14){
+              eventMessage.textContent = "You asked a coach for help on your code!"
+              statusChange.textContent = "Coding Knowledge + 3"
+              totalPoints += 3
+          } else if (idOfTileToMoveTo === 15){
+              eventMessage.textContent = "You took a break from code... and realized a silly error."
+              statusChange.textContent = "Points + 2"
+              totalPoints += 2
+          } else if (idOfTileToMoveTo === 16){
+              eventMessage.textContent = "Event delegation is too confusing!"
+              statusChange.textContent = "Points - 2"
+              totalPoints -= 2
+          } else if (idOfTileToMoveTo === 17){
+              //add skills check
+              eventMessage.textContent = "Pairing lab was super hard but you got through it"
+              statusChange.textContent = "Points + 4"
+              totalPoints += 4
+          } else if (idOfTileToMoveTo === 18){
+              eventMessage.textContent = "You attended a review session...but fell asleep."
+              statusChange.textContent = "Points - 4"
+              totalPoints -= 4
+          } else if (idOfTileToMoveTo === 19){
+              eventMessage.textContent = `React turns out to be "super easy"`
+              statusChange.textContent = "Points + 4"
+              totalPoints += 4
+          } else if (idOfTileToMoveTo === 20){
+              //add graduation eligibility check
+              eventMessage.textContent = "You passed a code challenge!"
+              statusChange.textContent = "Points + 5"
+              totalPoints += 5
+          }
+      }
+  } else {
+      const startTile = document.getElementById('1')
+      startTile.appendChild(dot) 
+      notYetMsg.style.display = 'inline-grid'
+  }
+  p.textContent = `${totalPoints} points`
+  // winner(totalPoints
+}
 
 
