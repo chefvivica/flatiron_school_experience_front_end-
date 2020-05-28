@@ -7,8 +7,11 @@ const logInBtn = document.querySelector('#log_in')
 const logIn = document.querySelector('form')
 const playButton = document.querySelector('.picked_avatar')
 const notYetMsg = document.querySelector('.notYetMsg')
+const audioBar = document.querySelector('.soundTrack')
 notYetMsg.style.display = "none"
 board.style.display = 'none'
+audioBar.style.display = 'none'
+
 
 const centerDisplayText = document.querySelector('#center-text')
 let newPlayer = {}
@@ -180,9 +183,10 @@ const pickAvatar =(avatarDiv) =>{
 //starting game!!!!!!let's go!
 const startGame = (e) =>{
   e.preventDefault()
+  
   const username = e.target.dataset.name
 
-  const  pickedAvForm = document.querySelector('.pickedAvtForm')
+  const pickedAvForm = document.querySelector('.pickedAvtForm')
   const pickedAv = document.querySelector('.pickedAvt')
   newAvatar.name =  pickedAvForm.name.value
   newAvatarImageUrl = e.target.dataset.img
@@ -208,6 +212,7 @@ const startGame = (e) =>{
   pickedAv.style.display = 'none'
   pickedAvForm.style.display = 'none'
   board.style.display = 'inline-grid'
+  audioBar.style.display = "block"
 
   const avCircle = document.createElement('span')
   avCircle.setAttribute('class','avatarCircle')
@@ -245,8 +250,9 @@ const background = (imgUrl) =>{
 
 function winner(num){
   if (num >= 30 ){
-    background('https://banner2.cleanpng.com/20180218/xge/kisspng-graduation-ceremony-free-content-clip-art-college-graduation-cliparts-5a89ba621cf799.1946926815189755861187.jpg')
+    background('https://g.foolcdn.com/editorial/images/564190/winner.jpg')
     board.style.display ='none'
+    audioBar.style.display ='none'
     document.querySelector('#userInfo').remove()
 
   

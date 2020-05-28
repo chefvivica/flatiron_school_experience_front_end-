@@ -50,7 +50,7 @@ body {
   cursor: pointer;
   width: 40%;
   float: right;
-  height: 40px;
+  height: 60px;
   opacity: 0.9;
   font-family: 'Amatic SC', sans-serif;
   font-weight: bold;
@@ -269,6 +269,7 @@ div.dice{
 
 
 
+
 .avatarCircle {
   margin-top: 10px;
   height: 30px;
@@ -302,8 +303,9 @@ div.dice{
 
 
 figure {
-  margin: 0;
-  position: relative;
-  float: right;
-  top: 30px;
+  display: block;
+  margin-bottom: 20px;
+  margin-left: 15px;
+  position: absolute;
+  top: 20px;
 }
