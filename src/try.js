@@ -137,10 +137,7 @@ const pickAvatar =(avatarDiv) =>{
       document.body.append(pickedAvtNameForm)
       let img = document.querySelector('#myAvt')
       newAvatarImageUrl = img.src
-<<<<<<< HEAD
       pickedAvtNameForm.dataset.img = newAvatarImageUrl
-=======
->>>>>>> 78f3fc5dc9f19cff8682e996b30c270925992e43
       pickedAvtNameForm.addEventListener('submit',startGame)
     }
   })
@@ -150,10 +147,7 @@ const pickAvatar =(avatarDiv) =>{
 const startGame = (e) =>{
   e.preventDefault()
   const username = e.target.dataset.name
-<<<<<<< HEAD
-=======
 
->>>>>>> 78f3fc5dc9f19cff8682e996b30c270925992e43
   const  pickedAvForm = document.querySelector('.pickedAvtForm')
   const pickedAv = document.querySelector('.pickedAvt')
   newAvatar.name =  pickedAvForm.name.value
@@ -174,11 +168,8 @@ const startGame = (e) =>{
       })
     }).then(res => res.json()).then(res => avatarID = res.id)
 
-<<<<<<< HEAD
 
   console.log(avatarID)
-=======
->>>>>>> 78f3fc5dc9f19cff8682e996b30c270925992e43
 
   pickedAv.style.display = 'none'
   pickedAvForm.style.display = 'none'
