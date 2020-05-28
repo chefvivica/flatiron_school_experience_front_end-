@@ -7,13 +7,18 @@
 #header{
   top: 40px;
   position: relative;
-  font-family: sans-serif;
+  font-family: 'Amatic SC', sans-serif;
   background-color: coral;
   height: 50px;
+}
 
+#header a{
+  margin-left: 25px;
 }
 
 body { 
+  font-family: 'Amatic SC', sans-serif;
+  letter-spacing: 2px;
   background-image: no-repeat; 
   opacity: 70%;
   background-position: center;
@@ -22,42 +27,69 @@ body {
   background-color: rgb(183, 236, 240);
 }
 
+.picked_avatar{
+  border-radius: 20px;
+}
+
+.picked_avatar:hover{
+  background-color: gray;
+  cursor: pointer;
+}
+
+.avatarName{
+  font-family: "Amatic SC", sans-serif;
+}
+
 
 #log_in{
   background-color: rgb(187, 154, 224);
   color: rgba(3, 3, 1, 0.863);
   padding: 14px 20px;
-  margin: 16px 0;
   border: none;
+  border-radius: 25px;
   cursor: pointer;
   width: 40%;
   float: right;
   height: 40px;
   opacity: 0.9;
-  font-family: sans-serif;
+  font-family: 'Amatic SC', sans-serif;
   font-weight: bold;
   font-size: 20px;
+  margin-top: 25px;
+  margin-right: 20px;
+}
 
+#log_in:hover{
+  background-color: rgb(141, 99, 189);
+  cursor: pointer;
 }
 
 .log_in_btn{
+  border-radius: 25px;
   width: 35px;
   height: 35px;
   font-size: large;
   font-weight: bold;
   color: #000000;
-  
+}
+
+.log_in_btn:hover{
+  background-color: gray;
+  cursor: pointer;
+
 }
 
 button:hover {
   opacity:1;
+  cursor: pointer;
+
 }
 
 
 .lines{
   width: 100%;
   font-size: 20px;
-  font-family: sans-serif;
+  font-family: 'Amatic SC', sans-serif;
   color: #1a1715;
   float: right;
   animation-name: example;
@@ -77,18 +109,19 @@ button:hover {
   height: 30px;
   width: 30%;
   font-size: medium;
-  font-family: sans-serif;
-
-  
+  font-family: 'Amatic SC', sans-serif;
 }
 
 .user{
+  margin-left: 20px;
   font-size: xx-large;
   font-weight: bolder;
 
 }
 
 .pickAvatarBtn{
+  font-family: "Amatic SC", sans-serif;
+  font-weight: bold;
   background: #dbca34;
   width: 380px;
   padding: 4px 0;
@@ -98,7 +131,13 @@ button:hover {
   left: 50%;
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
-  border-radius: 3px;
+  border-radius: 20px;
+}
+
+.pickAvatarBtn:hover{
+  background-color: #d4a010;
+  cursor: pointer;
+
 }
 
 .pickedAvt{
@@ -134,7 +173,7 @@ input[type="submit"]{
 
 
 .robot{
-  font-family: "lazerz additktz";
+  font-family: 'Amatic SC', sans-serif;
   color: rgb(191, 197, 199);
   padding: 10px;
 }
@@ -198,6 +237,7 @@ div.dice{
   padding: 5px;
   border: #333333 2px solid;
   border-radius: 20px;
+  cursor: pointer;
 }
 .avatarCircle {
   margin-top: 10px;
@@ -211,4 +251,8 @@ div.dice{
 
 .avatars,img{
   width: 240px;
+  border-radius: 40px;
+  cursor: pointer;
 }
+
+

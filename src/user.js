@@ -231,8 +231,8 @@ document.addEventListener('click',e=>{
       const pickedAvtNameForm = document.createElement('form')
       pickedAvtNameForm.className = 'pickedAvtForm'
       pickedAvtNameForm.innerHTML = `
-      <label for="avater_name">I am your avatar, please give me a name.</label><br><br>
-      <input type="text" name="name" placeholder = "please give your avatar a name"/><br><br>
+      <label for="avatar_name">I'm your avatar! Please give me a name.</label><br><br>
+      <input type="text" name="name" placeholder = "Please give your avatar a name."/><br><br>
       <input type="submit" value="Play" class="picked_avatar"/>
       `
       document.body.append(pickedAvt)
