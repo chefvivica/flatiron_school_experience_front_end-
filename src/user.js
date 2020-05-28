@@ -12,10 +12,12 @@ const p = document.createElement('p')
 const centerTile = document.querySelector('.center-tile')
 centerTile.appendChild(p)
 // document.body.appendChild(p)
+let userID = null 
+let avatarID = null 
 
 
 function winner(num){
-  if (num >= 15 ){
+  if (num >= 30 ){
     board.textContent = 'YOU WIN!'
   }
 }
@@ -132,7 +134,7 @@ document.addEventListener('click',e=>{
           body: JSON.stringify({
             username: username
           })
-        }).then(res => res.json()).then(user => console.log(user) )
+        }).then(res => res.json()).then(user => userID = user.id )
       }
     }))
 

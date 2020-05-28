@@ -15,6 +15,11 @@ centerTile.appendChild(p)
 const ul = document.createElement('ul')
 ul.id = "centerAvt"
 centerTile.append(ul)
+let userID = null 
+let avatarID = null 
+let avatarName = null 
+let newAvatarImageUrl = null 
+let turns = 0
 
 //starting welcome page display the leader-board and sign in 
 
@@ -53,19 +58,18 @@ const getNewUser = username =>{
   pickAvatarBtn.textContent = 'Pick Your Avatar'
   document.body.append(pickAvatarBtn)
   pickAvatarBtn.dataset.name = username
-  // console.log(pickAvatarBtn)
-  // we could get the new user id we can implement this later
-  // fetch(usersUrl, {
-  //   method: 'POST', 
-  //   headers: {
-  //     "content-type": "application/json",
-  //     "accept": 'application/json'
-  //   },
-  //   body: JSON.stringify({
-  //     username: username
-  //   })
-  // }).then(res => res.json()).then(user => pickAvatarBtn.dataset.id = user.id)
-  pickAvatarBtn.addEventListener('click',getAvatar)
+  console.log(pickAvatarBtn)
+  fetch(usersUrl, {
+    method: 'POST', 
+    headers: {
+      "content-type": "application/json",
+      "accept": 'application/json'
+    },
+    body: JSON.stringify({
+      username: username
+    })
+  }).then(res => res.json()).then(user => userID = user.id)
+  pickAvatarBtn.addEventListener('click', getAvatar)
 }
 
 
@@ -129,7 +133,8 @@ const pickAvatar =(avatarDiv) =>{
       document.body.append(pickedAvt)
       document.body.append(pickedAvtNameForm)
       let img = document.querySelector('#myAvt')
-      newAvatar.image_url = img.src
+      newAvatarImageUrl = img.src
+      console.log(img.src)
       pickedAvtNameForm.addEventListener('submit',startGame)
     }
   })
@@ -143,6 +148,21 @@ const startGame = (e) =>{
   const  pickedAvForm = document.querySelector('.pickedAvtForm')
   const pickedAv = document.querySelector('.pickedAvt')
   newAvatar.name =  pickedAvForm.name.value
+    fetch(avatarsUrl, {
+      method: 'POST',
+      headers: {
+        "content-type": "application/json",
+        'accept': "application/json"
+      },
+      body: JSON.stringify({
+        name: newAvatar.name,
+        user_id: userID,
+        image_url: newAvatarImageUrl,
+        points: 0,
+        turns: 0
+      })
+    }).then(res => res.json()).then(res => console.log(res))
+
   console.log(newAvatar)
 
   pickedAv.style.display = 'none'
@@ -160,7 +180,7 @@ const startGame = (e) =>{
   yourAvt.className = 'yourAvt'
   yourAvt.innerHTML =`
   <h2>${newAvatar.name}</h3>
-  <img src = '${newAvatar.image_url}'/>
+  <img src = '${newAvatarImageUrl}'/>
   `
   // centerTile.append(yourAvt)
   const ul = createUserUl(username)
@@ -222,7 +242,7 @@ const background = (imgUrl) =>{
 }
 
 function winner(num){
-  if (num >= 10 ){
+  if (num >= 30 ){
     background('https://banner2.cleanpng.com/20180218/xge/kisspng-graduation-ceremony-free-content-clip-art-college-graduation-cliparts-5a89ba621cf799.1946926815189755861187.jpg')
     board.style.display ='none'
   
@@ -238,7 +258,7 @@ function leaderBoard(users){
           line = document.createElement('h3')
           line.className = "lines"
           line.setAttribute('dataset', `${avatar.skills}`)
-          line.innerText = `🔥${whoPlayed} as ${avatar.name} scored ${avatar.points} points gained ${avatar.skills} skills in ${avatar.turns} turns`
+          line.innerText = `🔥${whoPlayed} as ${avatar.name} scored ${avatar.points} points in ${avatar.turns} turns`
           logIn.append(line)
       })
   })
