@@ -33,8 +33,10 @@ document.body.style.backgroundImage =  "url('https://encrypted-tbn0.gstatic.com/
 
 
 // show the sign in form
+const continueButton = document.querySelector('.returning_user')
 
 logInBtn.addEventListener('click',e=>{
+    continueButton.style.display = "none"
     logInForm.innerHTML = `
     <label for="user_name">Name</label>
     <input type="text" name="user[name]" id="user_name" placeholder="please enter your user name here"/>
@@ -45,12 +47,13 @@ logInBtn.addEventListener('click',e=>{
 })
 
 
-const continueButton = document.querySelector('.returning_user')
+
 
 continueButton.addEventListener('click', function(e){
   e.preventDefault()
+  logInBtn.style.display = 'none'
   continueButton.style.display = 'none'
-  background(' ')
+  
   logInForm.innerHTML = `
     <label for="user_name">Name</label>
     <input type="text" name="user[name]" id="user_name" placeholder="please enter your user name here"/>
@@ -238,6 +241,8 @@ function winner(num){
   if (num >= 30 ){
     background('https://banner2.cleanpng.com/20180218/xge/kisspng-graduation-ceremony-free-content-clip-art-college-graduation-cliparts-5a89ba621cf799.1946926815189755861187.jpg')
     board.style.display ='none'
+    document.querySelector('#userInfo').remove()
+
   
 
   }
