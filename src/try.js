@@ -349,23 +349,36 @@ function movePlayerPiece(){
               eventMessage.textContent = "You passed a code challenge!"
               statusChange.textContent = "Points + 5"
               totalPoints += 5
+          } else if (totalPoints > 30){
+            winner(totalPoints)
           }
+          console.log(totalPoints)
+          p.textContent = `${totalPoints} points`
+          fetch(`${avatarsUrl}/${avatarID}`, {
+            method: 'PATCH',
+            headers: {
+              "content-type": "application/json",
+              accept: "application/json"
+            }, body: JSON.stringify({
+              points: totalPoints
+            })
+          }).then(res => res.json()).then(res => console.log(res))
       }
   } else {
       const startTile = document.getElementById('1')
       startTile.appendChild(dot) 
       notYetMsg.style.display = 'inline-grid'
   }
-  p.textContent = `${totalPoints} points`
-  fetch(`${avatarsUrl}/${avatarID}`, {
-    method: 'PATCH',
-    headers: {
-      "content-type": "application/json",
-      accept: "application/json"
-    }, body: JSON.stringify({
-      points: totalPoints
-    })
-  }).then(res => res.json()).then(res => console.log(res))
+  // p.textContent = `${totalPoints} points`
+  // fetch(`${avatarsUrl}/${avatarID}`, {
+  //   method: 'PATCH',
+  //   headers: {
+  //     "content-type": "application/json",
+  //     accept: "application/json"
+  //   }, body: JSON.stringify({
+  //     points: totalPoints
+  //   })
+  // }).then(res => res.json()).then(res => console.log(res))
 
   winner(totalPoints)
 }
