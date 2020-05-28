@@ -205,6 +205,29 @@ input[type="submit"]{
   background-size: cover;
 }
 
+.centerTextDisplay h4{
+  display: inline-grid;
+  font-size: 26px;
+}
+
+.centerTextDisplay h5{
+  font-size: 24px;
+}
+
+#center-text {
+  display: inline-grid;
+  font-size: 26px;
+}
+
+p{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.notYetMsg {
+  font-size: 30px;
+}
+
 .tile {
   font-weight: bold;
     font-size: 20px;
