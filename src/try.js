@@ -93,7 +93,7 @@ const getAvatar = (e)=>{
   pickAvatar(avatarDiv)
 }
 
-
+// pick a Avatar from collection and name it 
 const pickAvatar =(avatarDiv) =>{
   const username = avatarDiv.dataset.name
   console.log(username)
@@ -135,6 +135,7 @@ const pickAvatar =(avatarDiv) =>{
   })
 }
 
+//starting game!!!!!!let's go!
 const startGame = (e) =>{
   e.preventDefault()
   const username = e.target.dataset.name
