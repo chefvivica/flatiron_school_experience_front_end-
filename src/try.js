@@ -161,9 +161,9 @@ const startGame = (e) =>{
         points: 0,
         turns: 0
       })
-    }).then(res => res.json()).then(res => console.log(res))
+    }).then(res => res.json()).then(res => avatarID = res.id)
 
-  console.log(newAvatar)
+  console.log(avatarID)
 
   pickedAv.style.display = 'none'
   pickedAvForm.style.display = 'none'
@@ -230,6 +230,16 @@ dice.addEventListener('click', function(e){
     totalPoints += 6
   }
   p.textContent = `${totalPoints} points`
+  fetch(`${avatarsUrl}/${avatarID}`, {
+    method: 'PATCH',
+    headers: {
+      "content-type": "application/json",
+      accept: "application/json"
+    }, body: JSON.stringify({
+      points: totalPoints
+    })
+  }).then(res => res.json()).then(res => console.log(res))
+
   winner(totalPoints)
   
 })
