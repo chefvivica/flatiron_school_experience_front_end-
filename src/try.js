@@ -85,6 +85,7 @@ const greetingReturning = returningUser =>{
       user.avatars.forEach(avt =>{
         const div = document.createElement('div')
         div.dataset.id = avt.id
+        div.className = 'avtShowDiv'
         div.innerHTML = `
         <p>Avtar Name : ${avt.name}</p>
         <img src = '${avt.image_url}'/>
