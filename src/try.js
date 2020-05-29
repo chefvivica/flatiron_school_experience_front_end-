@@ -122,16 +122,16 @@ const getNewUser = username =>{
   pickAvatarBtn.textContent = 'Pick Your Avatar'
   document.body.append(pickAvatarBtn)
   pickAvatarBtn.dataset.name = username
-  // fetch(usersUrl, {
-  //   method: 'POST', 
-  //   headers: {
-  //     "content-type": "application/json",
-  //     "accept": 'application/json'
-  //   },
-  //   body: JSON.stringify({
-  //     username: username
-  //   })
-  // }).then(res => res.json()).then(user => userID = user.id)
+  fetch(usersUrl, {
+    method: 'POST', 
+    headers: {
+      "content-type": "application/json",
+      "accept": 'application/json'
+    },
+    body: JSON.stringify({
+      username: username
+    })
+  }).then(res => res.json()).then(user => userID = user.id)
   pickAvatarBtn.addEventListener('click', getAvatar)
 }
 
@@ -434,16 +434,16 @@ function movePlayerPiece(){
       startTile.appendChild(dot) 
       notYetMsg.style.display = 'inline-grid'
   }
-  // p.textContent = `${totalPoints} points`
-  // fetch(`${avatarsUrl}/${avatarID}`, {
-  //   method: 'PATCH',
-  //   headers: {
-  //     "content-type": "application/json",
-  //     accept: "application/json"
-  //   }, body: JSON.stringify({
-  //     points: totalPoints
-  //   })
-  // }).then(res => res.json()).then(res => console.log(res))
+  p.textContent = `${totalPoints} points`
+  fetch(`${avatarsUrl}/${avatarID}`, {
+    method: 'PATCH',
+    headers: {
+      "content-type": "application/json",
+      accept: "application/json"
+    }, body: JSON.stringify({
+      points: totalPoints
+    })
+  })
 
   winner(totalPoints)
 }
