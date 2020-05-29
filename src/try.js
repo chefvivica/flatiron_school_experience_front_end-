@@ -3,7 +3,9 @@ const avatarsUrl = 'http://localhost:3000/avatars'
 let board = document.querySelector('#grid')
 const h1 = document.querySelector('#header')
 const logInForm = document.querySelector('#logInForm')
+const returningForm = document.querySelector('#returningForm')
 const logInBtn = document.querySelector('#log_in')
+const continueButton = document.querySelector('#return')
 const logIn = document.querySelector('form')
 const playButton = document.querySelector('.picked_avatar')
 const notYetMsg = document.querySelector('.notYetMsg')
@@ -36,50 +38,69 @@ document.body.style.backgroundImage =  "url('https://encrypted-tbn0.gstatic.com/
 
 
 // show the sign in form
-const continueButton = document.querySelector('.returning_user')
-
 logInBtn.addEventListener('click',e=>{
-    continueButton.style.display = "none"
-    logInForm.innerHTML = `
-    <label for="user_name">Name</label>
-    <input type="text" name="user[name]" id="user_name" placeholder="please enter your user name here"/>
-    
-    <input type="submit" name="commit" value="Go" class="log_in_btn" />
-    `
-    document.body.append(logInForm)    
+  continueButton.style.display = "none"
+  logInForm.innerHTML = `
+  <label for="user_name">Name</label>
+  <input type="text" name="user[name]" id="user_name" placeholder="please enter your user name here"/>
+  
+  <input type="submit" name="commit" value="Go" class="log_in_btn" />
+  `  
 })
 
-
-
-
+//case 2 user is a returning user
 continueButton.addEventListener('click', function(e){
   e.preventDefault()
   logInBtn.style.display = 'none'
   continueButton.style.display = 'none'
-  
-  logInForm.innerHTML = `
+  logIn.style.display = "none"
+  returningForm.innerHTML = `
     <label for="user_name">Name</label>
-    <input type="text" name="user[name]" id="user_name" placeholder="please enter your user name here"/>
+    <input type="text" name="user[name]" id="return_user" placeholder="please enter your user name here"/>
     
     <input type="submit" name="commit" value="Go" class="log_in_btn" />
     `
-    document.body.append(logInForm)   
-    const returningUser = document.querySelector('input').value
-
-    fetch(usersUrl).then(res => res.json()).then(users =>{
-      users.forEach(user =>  {if (user.name == returningUser){
-        const header = document.querySelector('div')
-        userID = user.id 
-        avatarID = user.avatars[0].id 
-        totalPoints = user.avatars[0].points 
-        console.log(user.avatars[0].id)
-        avatarName = user.avatars[0].name
-        turns = user.avatars[0].turns 
-        header.innerHTML = `<h1 class='returningUser'> Welcome Back ${username}!</h1><br><button class='picked_avatar'>Play</button>`
-      }})
-    })
-
+    
+  })
+returningForm.addEventListener('submit', e =>{
+  e.preventDefault()
+  const returningUser = document.querySelector('input').value
+  greetingReturning(returningUser)
 })
+
+const greetingReturning = returningUser =>{
+  returningForm.style.display ="none"
+  h1.style.display = 'none'
+  const header = document.querySelector('div')
+  header.id = 'oldAvt'
+
+  fetch(usersUrl).then(res => res.json()).then(users => users.forEach(user =>{
+    if(user.username == returningUser){
+      header.innerHTML = `
+      <h1 class='returningUser' id=${user.id}> Welcome Back ${user.username}!</h1><br>
+      <h2> Here are your Avatars History</h2>
+      <ul id='returnAvt'></ul>
+      <button id="restart" data-name="${user.username}"> Start A New Game </button>
+      `
+      user.avatars.forEach(avt =>{
+        const div = document.createElement('div')
+        div.dataset.id = avt.id
+        div.innerHTML = `
+        <p>Avtar Name : ${avt.name}</p>
+        <img src = ${avt.image_url}/>
+        <p> Total point : ${avt.points}
+        `
+        const ul = document.querySelector('#returnAvt')
+        ul.append(div)
+        const btn = document.querySelector('#restart')
+        btn.addEventListener('click', e=>{
+          window.location.href = "./index.html?user%5Bname%5D=aaa&commit=Go"
+        })
+      })
+    }
+  }))
+} 
+
 
 
 // //grabing the user name
@@ -91,6 +112,7 @@ logInForm.addEventListener("submit",e=>{
 
 const getNewUser = username =>{
   background("https://media1.giphy.com/media/3o7TKAW5scXkqmqTdK/200.webp?cid=ecf05e4704e31d4a3404cf2c2569491fdce225a4c6a9eb2d&rid=200.webp")
+  
   logInForm.style.display ="none"
   h1.style.display = 'none'
   const btn = document.querySelector('#log_in').style.display = "none"
@@ -99,16 +121,16 @@ const getNewUser = username =>{
   pickAvatarBtn.textContent = 'Pick Your Avatar'
   document.body.append(pickAvatarBtn)
   pickAvatarBtn.dataset.name = username
-  fetch(usersUrl, {
-    method: 'POST', 
-    headers: {
-      "content-type": "application/json",
-      "accept": 'application/json'
-    },
-    body: JSON.stringify({
-      username: username
-    })
-  }).then(res => res.json()).then(user => userID = user.id)
+  // fetch(usersUrl, {
+  //   method: 'POST', 
+  //   headers: {
+  //     "content-type": "application/json",
+  //     "accept": 'application/json'
+  //   },
+  //   body: JSON.stringify({
+  //     username: username
+  //   })
+  // }).then(res => res.json()).then(user => userID = user.id)
   pickAvatarBtn.addEventListener('click', getAvatar)
 }
 
@@ -164,7 +186,7 @@ const pickAvatar =(avatarDiv) =>{
       const pickedAvtNameForm = document.createElement('form')
       pickedAvtNameForm.className = 'pickedAvtForm'
       pickedAvtNameForm.dataset.name = username
-     
+    
       pickedAvtNameForm.innerHTML = `
       <label for="avatar_name" class="avatarName">I'm your avatar! Please give me a name.</label><br><br>
       <input type="text" name="name" placeholder = "please give your avatar a name"/><br><br>

@@ -123,6 +123,8 @@ document.addEventListener('click',e=>{
     fetch(usersUrl).then(res => res.json()).then(users => users.forEach(user =>{
       if (user.username == username){ 
         const header = document.querySelector('div')
+        console.log(header)
+        console.log(username)
         header.innerHTML = `<h1 class='returningUser' id=${user.id}> Welcome Back ${username}!</h1><br><button class='picked_avatar'>Play</button>`
       } else {
         fetch(usersUrl, {

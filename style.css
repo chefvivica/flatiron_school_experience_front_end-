@@ -41,7 +41,7 @@ body {
 }
 
 
-#log_in{
+.welcome{
   background-color: rgb(187, 154, 224);
   color: rgba(3, 3, 1, 0.863);
   padding: 14px 20px;
@@ -59,25 +59,24 @@ body {
   margin-right: 500px;
 }
 
-#log_in:hover{
+
+/* #log_in:hover{
   background-color: rgb(141, 99, 189);
   cursor: pointer;
-}
+} */
 
-.log_in_btn{
+/* .log_in_btn{
   border-radius: 25px;
   width: 35px;
   height: 35px;
-  font-size: 36;
   font-weight: bold;
   color: #000000;
-}
-
+} */
+/* 
 .log_in_btn:hover{
   background-color: gray;
   cursor: pointer;
-
-}
+} */
 
 button:hover {
   opacity:1;
@@ -112,6 +111,12 @@ button:hover {
   font-family: 'Amatic SC', sans-serif;
 }
 
+#return_user{
+  height: 30px;
+  width: 30%;
+  font-size: medium;
+  font-family: 'Amatic SC', sans-serif;
+}
 .user{
   margin-left: 650px;
   font-size: xx-large;
@@ -207,7 +212,6 @@ input[type="submit"]{
 
 .centerTextDisplay h4{
   display: inline-grid;
-  font-size: 26px;
 }
 
 .centerTextDisplay h5{
@@ -308,4 +312,5 @@ figure {
   margin-left: 15px;
   position: absolute;
   top: 20px;
+  font-size: 48;
 }

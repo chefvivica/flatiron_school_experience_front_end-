@@ -13,9 +13,9 @@
     <div >
       <h1 id="header"><a>Welcome To Flatiron School Experience Game</a></h1>
       <br><br><br>
-      <button id="log_in" class="log_in">Please Enter Your Name To Start </button>
+      <button id="log_in" class="welcome">Please enter your name to start a new game</button>
       <br><br><br>
-      <button id="log_in" class="returning_user">Continue Your Game </button>
+      <button id="return" class="welcome">Check here to see you game history </button>
       <br><br><br>
     </div>
 
@@ -36,10 +36,10 @@
 
 <body>
   <figure class="soundTrack">
-    <figcaption>Listen to the T-Rex:</figcaption>
+    <figcaption>Play</figcaption>
     <audio 
         controls
-        src="./img/Point of Clash.ogg">
+        src="./img/Purple Planet Music - Schooldays (1_19) 130bpm.mp3">
             Your browser does not support the
             <code>audio</code> element.
     </audio>
@@ -48,6 +48,7 @@
   <div id="leader-board"></div>
   <br> <br>
   <form id="logInForm" class="user"></form>
+  <form id="returningForm" class="user"></form>
 
 <div id="board"></div>
   <div id="grid">
@@ -116,7 +117,7 @@
       <!-- <div id="die2" class="dice">0</div> -->
       <button class="dieBtn" onclick="rollDice()"> Roll Dice</button>
       <h2 id="status" style="clear: left;"> </h2>
-      <h4 class="notYetMsg"> You aren't ready to graduate yet! <br> Keep studying!!! </h4> <br>
+      <h4 class="notYetMsg">  <br> Keep studying!!! </h4> <br>
       <div id="center-text">
         <h4 class="h4-msg">Let's start this journey!</h4>
         <h5 class="h5-msg">Coding knowledge starts at 0.</h5>
@@ -126,3 +127,4 @@
 </body>
 </html>
 
+<!-- You aren't ready to graduate yet! -->
