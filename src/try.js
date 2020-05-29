@@ -87,7 +87,7 @@ const greetingReturning = returningUser =>{
         div.dataset.id = avt.id
         div.innerHTML = `
         <p>Avtar Name : ${avt.name}</p>
-        <img src = ${avt.image_url}/>
+        <img src = '${avt.image_url}'/>
         <p> Total point : ${avt.points}
         `
         const ul = document.querySelector('#returnAvt')
