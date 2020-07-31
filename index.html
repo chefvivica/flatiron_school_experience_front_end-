@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href="https://fonts.googleapis.com/css?family=Amatic+SC">
     <title>The Flatiron Experience</title>
-    <!-- <script type="text/javascript" src="src/index.js" defer></script>
-
-    <script type="text/javascript" src="src/user.js" defer></script> -->
-    <script type="text/javascript" src="src/try.js" defer></script>
+    <script type="text/javascript" src="src/index.js" defer></script>
     <link rel="stylesheet" href="./style.css" data-turbolinks-track="reload" />
     <div >
       <h1 id="header"><a>Welcome To Flatiron School Experience Game</a></h1>
@@ -19,112 +16,90 @@
       <br><br><br>
     </div>
 
-<script>
-  function rollDice(){
-    let die1 = document.getElementById('die1')
-    // let die2 = document.getElementById('die2')
-    let status = document.getElementById('status')
-    let d1 = Math.floor(Math.random() * 3) + 1
-    // let d2 = Math.floor(Math.random() * 6) + 1
-    let diceTotal = d1
-    die1.innerHTML = d1
-    // die2.innerHTML = d2
-    status.textContent = `You rolled ${diceTotal}!`
-}
-  </script>
-</head>
+    <script>
+      function rollDice(){
+        let die1 = document.getElementById('die1')
+        // let die2 = document.getElementById('die2')
+        let status = document.getElementById('status')
+        let d1 = Math.floor(Math.random() * 3) + 1
+        // let d2 = Math.floor(Math.random() * 6) + 1
+        let diceTotal = d1
+        die1.innerHTML = d1
+        // die2.innerHTML = d2
+        status.textContent = `You rolled ${diceTotal}!`
+      }
+    </script>
+  </head>
 
-<body>
-  <figure class="soundTrack">
-    <figcaption>Play</figcaption>
-    <audio 
+  <body>
+    <figure class="soundTrack">
+      <figcaption>Play</figcaption>
+      <audio 
         controls
         src="./img/Purple Planet Music - Schooldays (1_19) 130bpm.mp3">
-            Your browser does not support the
-            <code>audio</code> element.
-    </audio>
-</figure>
+        Your browser does not support the
+        <code>audio</code> element.
+      </audio>
+    </figure>
 
-  <div id="leader-board"></div>
-  <br> <br>
-  <form id="logInForm" class="user"></form>
-  <form id="returningForm" class="user"></form>
+    <div id="leader-board"></div>
+      <br> <br>
+    <form id="logInForm" class="user"></form>
+    <form id="returningForm" class="user"></form>
 
-<div id="board"></div>
-  <div id="grid">
-    <div id="1" class="tile">
-      Start
-    </div>
-    <div id="2" class="tile">
-      
-    </div>
-    <div id="3" class="tile">
-     
-    </div>
-    <div id="4" class="tile">
-      
-    </div>
-    <div id="5" class="tile">
-      Mod 1 Code Challenge!
-    </div>
-    <div id="6" class="tile">
-      
-    </div>
-    <div id="20" class="tile">
-      Final Project!
-    </div>
-    <div id="7" class="tile">
-      Lecture 
-    </div>
-    <div id="19" class="tile">
-      
-    </div>
-    <div id="8" class="tile">
-      
-    </div>
-    <div id="18" class="tile">
-      
-    </div>
-    <div id="9" class="tile">
-      Mod 2 Code Challenge!
-    </div>
-    <div id="17" class="tile">
-      Mod 4 Code Challenge!
-    </div>
-    <div id="10" class="tile">
-      
-    </div>
-    <div id="16" class="tile">
-      
-    </div>
-    <div id="15" class="tile">
-      
-    </div>
-    <div id="14" class="tile">
-      
-    </div>
-    <div id="13" class="tile">
-      Mod 3 Code Challenge!
-    </div>
-    <div id="12" class="tile">
-      
-    </div>
-    <div id="11" class="tile">
-      
-    </div>
-    <div class="center-tile">
-      <div id="die1" class="dice">0</div>
-      <!-- <div id="die2" class="dice">0</div> -->
-      <button class="dieBtn" onclick="rollDice()"> Roll Dice</button>
-      <h2 id="status" style="clear: left;"> </h2>
-      <h4 class="notYetMsg">  <br> Keep studying!!! </h4> <br>
-      <div id="center-text">
-        <h4 class="h4-msg">Let's start this journey!</h4>
-        <h5 class="h5-msg">Coding knowledge starts at 0.</h5>
-      </div>
-    </div>
-  
-</body>
+      <div id="board"></div>
+      <div id="grid">
+        <div id="1" class="tile"> Start </div>
+
+        <div id="2" class="tile"></div>
+
+        <div id="3" class="tile"></div>
+
+        <div id="4" class="tile"></div>
+
+        <div id="5" class="tile"> Mod 1 Code Challenge! </div>
+
+        <div id="6" class="tile"></div>
+
+        <div id="20" class="tile"> Final Project! </div>
+
+        <div id="7" class="tile"> Lecture </div>
+
+        <div id="19" class="tile"></div>
+
+        <div id="8" class="tile"></div>
+
+        <div id="18" class="tile"></div>
+
+        <div id="9" class="tile">Mod 2 Code Challenge!</div>
+
+        <div id="17" class="tile">Mod 4 Code Challenge!</div>
+
+        <div id="10" class="tile"></div>
+
+        <div id="16" class="tile"></div>
+
+        <div id="15" class="tile"></div>
+        
+        <div id="14" class="tile"></div>
+
+        <div id="13" class="tile"> Mod 3 Code Challenge! </div>
+        
+        <div id="12" class="tile"></div>
+
+        <div id="11" class="tile"></div>
+
+      <div class="center-tile">
+        <div id="die1" class="dice">0</div>
+        <button class="dieBtn" onclick="rollDice()"> Roll Dice</button>
+        <h2 id="status" style="clear: left;"> </h2>
+        <h4 class="notYetMsg">  <br> Keep studying!!! </h4> <br>
+        
+        <div id="center-text">
+          <h4 class="h4-msg">Let's start this journey!</h4>
+          <h5 class="h5-msg">Coding knowledge starts at 0.</h5>
+        </div>
+    </div>    
+  </body>
 </html>
 
-<!-- You aren't ready to graduate yet! -->
