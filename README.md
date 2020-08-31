@@ -10,3 +10,18 @@ The FSE Board Game takes scenarios from experiences we have personally gone thro
 
 It utilizes a Ruby on Rails Back-end with a JavaScript front-end.
 The CSS used is purely vanilla custom CSS. 
+
+Users pick an avatar
+
+<img src='./pickAvatar.png' alt='pick' >
+
+Name their avatar 
+
+<img src='./nameAvatar.png' alt='name' />
+
+Roll a dice and see what happens...
+
+<img src='./dice.png' alt='dice' />
+
+
+
